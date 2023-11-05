@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: postgres
+    username: admin
+    password: admin
+  liquibase:
+    change-log: classpath:changelog/changelog-master.yml

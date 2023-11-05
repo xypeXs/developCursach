@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-table-STORAGES" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="STORAGES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="STORAGES">
+            <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор записи о типе товара"/>
+            <column name="ADDRESS" type="TEXT(100)" remarks="Адрес склада"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

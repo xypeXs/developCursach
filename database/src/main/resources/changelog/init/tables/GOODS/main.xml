@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-table-GOODS" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="GOODS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="GOODS">
+            <column name="GOOD_ID" type="NUMERIC(19)" remarks="Идентификатор записи о товаре">
+                <constraints primaryKey="true" primaryKeyName="PK_GOOD_ID"/>
+            </column>
+            <column name="GOOD_TYPE_ID" type="NUMERIC(19)" remarks="Идентификатор записи о типе товара (внешний ключ)">
+                <constraints foreignKeyName="FK_GOOD_GOOD_TYPE" referencedTableName="GOOD_TYPES"
+                             referencedColumnNames="GOOD_TYPE_ID"/>
+            </column>
+            <column name="QUANTITY" type="NUMERIC(19)" remarks="Количество товара"/>
+            <column name="PRICE" type="NUMERIC(19, 2)" remarks="Цена на товар"/>
+            <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор склада (внешний ключ)">
+                <constraints foreignKeyName="FK_GOOD_STORAGE" referencedTableName="STORAGES"
+                             referencedColumnNames="STORAGE_ID"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,5 @@
+databaseChangeLog:
+    - include:
+        file: changelog/tables/changelog.xml
+    - include:
+          file: changelog/data/changelog.xml
