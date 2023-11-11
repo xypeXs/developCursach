@@ -12,9 +12,9 @@
             </and>
         </preConditions>
         <sql>
-            INSERT INTO GOOD_TYPES(GOOD_TYPE_ID, NAME) VALUES(100, 'Стройматериалы - доски')
-            INSERT INTO GOOD_TYPES(GOOD_TYPE_ID, NAME) VALUES(101, 'Шуруповёрты')
-            INSERT INTO GOOD_TYPES(GOOD_TYPE_ID, NAME) VALUES(102, 'Двери межкомнантые')
+            INSERT INTO GOOD_TYPES(GOOD_TYPE_ID, NAME) VALUES(100, 'Стройматериалы - доски');
+            INSERT INTO GOOD_TYPES(GOOD_TYPE_ID, NAME) VALUES(101, 'Шуруповёрты');
+            INSERT INTO GOOD_TYPES(GOOD_TYPE_ID, NAME) VALUES(102, 'Двери межкомнантые');
         </sql>
     </changeSet>
 </databaseChangeLog>

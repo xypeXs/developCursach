@@ -1,5 +1,5 @@
 databaseChangeLog:
     - include:
-        file: changelog/tables/changelog.xml
+        file: changelog/init/tables/changelog.xml
     - include:
-          file: changelog/data/changelog.xml
+          file: changelog/init/data/changelog.xml

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: postgres
+    url: jdbc:postgresql://postgres/TRADE
     username: admin
     password: admin
   liquibase:

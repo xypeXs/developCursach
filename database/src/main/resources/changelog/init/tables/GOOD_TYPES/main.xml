@@ -4,14 +4,16 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    <changeSet id="create-table-GOODS_TYPES" author="gananyev">
+    <changeSet id="create-table-GOOD_TYPES" author="gananyev">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="GOODS_TYPES"/>
+                <tableExists tableName="GOOD_TYPES"/>
             </not>
         </preConditions>
-        <createTable tableName="GOODS_TYPES">
-            <column name="GOOD_TYPE_ID" type="NUMERIC(19)" remarks="Идентификатор записи о типе товара"/>
+        <createTable tableName="GOOD_TYPES">
+            <column name="GOOD_TYPE_ID" type="NUMERIC(19)" remarks="Идентификатор записи о типе товара">
+                <constraints primaryKey="true" primaryKeyName="PK_GOOD_TYPE_ID"/>
+            </column>
             <column name="NAME" type="TEXT(100)" remarks="Наименование типа товара"/>
         </createTable>
     </changeSet>

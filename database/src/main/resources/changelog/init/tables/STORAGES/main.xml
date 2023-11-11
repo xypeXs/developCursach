@@ -11,7 +11,9 @@
             </not>
         </preConditions>
         <createTable tableName="STORAGES">
-            <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор записи о типе товара"/>
+            <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор записи о типе товара">
+                <constraints primaryKey="true" primaryKeyName="PK_STORAGE_ID"/>
+            </column>
             <column name="ADDRESS" type="TEXT(100)" remarks="Адрес склада"/>
         </createTable>
     </changeSet>
