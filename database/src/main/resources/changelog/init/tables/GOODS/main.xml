@@ -20,10 +20,23 @@
             </column>
             <column name="QUANTITY" type="NUMERIC(19)" remarks="Количество товара"/>
             <column name="PRICE" type="NUMERIC(19, 2)" remarks="Цена на товар"/>
+            <column name="VOLUME" type="NUMBER(19)" remarks="Объём одной единицы товара"/>
+            <column name="WEIGHT" type="NUMBER(19, 3)" remarks="Масса одной единицы товара"/>
             <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор склада (внешний ключ)">
                 <constraints foreignKeyName="FK_GOOD_STORAGE" referencedTableName="STORAGES"
                              referencedColumnNames="STORAGE_ID"/>
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="add-sequence-generator-GOODS" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="GOODS"/>
+        </preConditions>
+        <createSequence sequenceName="GOOD_ID_SEQ"
+                        startValue="1000"
+                        incrementBy="1"
+                        maxValue="9223372036854775807"/>
+    </changeSet>
+
 </databaseChangeLog>
