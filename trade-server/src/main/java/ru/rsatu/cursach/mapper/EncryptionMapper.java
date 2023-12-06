@@ -2,9 +2,12 @@ package ru.rsatu.cursach.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
+import ru.rsatu.cursach.config.MapstructConfig;
 import ru.rsatu.cursach.utils.EncryptionUtils;
 
-@Mapper
+@Mapper(
+        config = MapstructConfig.class
+)
 public interface EncryptionMapper {
 
     @Named("encrypt")

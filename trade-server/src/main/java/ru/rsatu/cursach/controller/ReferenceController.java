@@ -16,11 +16,11 @@ public class ReferenceController {
     ReferenceControllerService referenceControllerService;
 
     @GET
-    @Path("/good-type/{id}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response hello(@PathParam("id") String encryptedId) {
+    @Path("/delivery-status/{code}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getDeliveryStatusByCode(@PathParam("code") String code) {
         return Response
-                .ok(referenceControllerService.getGoodType(encryptedId))
+                .ok(referenceControllerService.getDeliveryStatus(code))
                 .build();
     }
 }

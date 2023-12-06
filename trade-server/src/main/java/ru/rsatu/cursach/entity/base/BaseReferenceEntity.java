@@ -1,6 +1,5 @@
 package ru.rsatu.cursach.entity.base;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -10,10 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public class BaseReferenceEntity extends PanacheEntity {
+public class BaseReferenceEntity {
     @Id
     @Column(name = "ID")
     private Long id;
+
+    @Column(name = "CODE")
+    private String code;
 
     @Column(name = "NAME")
     private String name;

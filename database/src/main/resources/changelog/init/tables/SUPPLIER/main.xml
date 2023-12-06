@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-table-SUPPLIERS" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="SUPPLIERS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="SUPPLIERS">
+            <column name="SUPPLIER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставщике (первичный ключ)">
+                <constraints primaryKey="true"
+                             primaryKeyName="PK_SUPPLIER_ID"/>
+            </column>
+            <column name="LEGAL_ADDRESS" type="VARCHAR(1000)" remarks="Юридический адрес"/>
+            <column name="NAME" type="VARCHAR(1000)" remarks="Полное наименование поставщика"/>
+            <column name="RATING" type="NUMERIC(2, 1)" remarks="Рейтинг поставщика"/>
+            <column name="REGISTRATION_DATE" type="DATE" remarks="Дата регистрации поставщика"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-sequence-generator-SUPPLIERS" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="SUPPLIERS"/>
+        </preConditions>
+        <createSequence sequenceName="SUPPLIER_ID_SEQ"
+                        startValue="1000"
+                        incrementBy="1"
+                        maxValue="9223372036854775807"/>
+    </changeSet>
+
+</databaseChangeLog>
