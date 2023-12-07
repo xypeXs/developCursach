@@ -1,23 +1,42 @@
 package ru.rsatu.cursach.service;
 
+import io.quarkus.panache.common.Page;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import ru.rsatu.cursach.entity.base.BaseReferenceEntity;
 import ru.rsatu.cursach.entity.reference.DeliveryStatus;
 import ru.rsatu.cursach.repository.base.BaseReferenceRepository;
-import ru.rsatu.cursach.repository.reference.GoodTypeRepository;
+import ru.rsatu.cursach.repository.reference.DeliveryStatusRepository;
+
+import java.util.List;
 
 @ApplicationScoped
 public class ReferenceService {
 
     @Inject
-    GoodTypeRepository goodTypeRepository;
+    DeliveryStatusRepository deliveryStatusRepository;
 
     public DeliveryStatus getDeliveryStatus(String code) {
-        return getBaseReferenceEntityByCode(goodTypeRepository, code);
+        return getBaseReferenceEntityByCode(deliveryStatusRepository, code);
+    }
+
+    public List<DeliveryStatus> getDeliveryStatusPage(Page page) {
+        return getBaseReferenceEntityPage(deliveryStatusRepository, page);
+    }
+
+    public Long getDeliveryStatusCount() {
+        return getBaseReferenceCount(deliveryStatusRepository);
     }
 
     private <E extends BaseReferenceEntity> E getBaseReferenceEntityByCode(BaseReferenceRepository<E> repository, String code) {
         return repository.findByCode(code);
+    }
+
+    private <E extends BaseReferenceEntity> List<E> getBaseReferenceEntityPage(BaseReferenceRepository<E> repository, Page page) {
+        return repository.findAll().page(page).list();
+    }
+
+    private <E extends BaseReferenceEntity> Long getBaseReferenceCount(BaseReferenceRepository<E> repository) {
+        return repository.count();
     }
 }

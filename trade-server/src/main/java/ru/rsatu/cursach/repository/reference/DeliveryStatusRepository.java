@@ -5,5 +5,5 @@ import ru.rsatu.cursach.entity.reference.DeliveryStatus;
 import ru.rsatu.cursach.repository.base.BaseReferenceRepository;
 
 @ApplicationScoped
-public class GoodTypeRepository extends BaseReferenceRepository<DeliveryStatus> {
+public class DeliveryStatusRepository extends BaseReferenceRepository<DeliveryStatus> {
 }
