@@ -1,4 +1,4 @@
-package ru.rsatu.cursach.repository.base;
+package ru.rsatu.cursach.repository;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import ru.rsatu.cursach.entity.base.BaseReferenceEntity;

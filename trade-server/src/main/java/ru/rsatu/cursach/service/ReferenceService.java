@@ -5,8 +5,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import ru.rsatu.cursach.entity.base.BaseReferenceEntity;
 import ru.rsatu.cursach.entity.reference.DeliveryStatus;
-import ru.rsatu.cursach.repository.base.BaseReferenceRepository;
-import ru.rsatu.cursach.repository.reference.DeliveryStatusRepository;
+import ru.rsatu.cursach.repository.BaseReferenceRepository;
+import ru.rsatu.cursach.repository.DeliveryStatusRepository;
 
 import java.util.List;
 
