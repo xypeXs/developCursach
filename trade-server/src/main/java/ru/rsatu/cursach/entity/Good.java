@@ -3,6 +3,7 @@ package ru.rsatu.cursach.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -22,6 +23,7 @@ public class Good {
 
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(generator = "GOOD_ID_SEQ")
     @Column(name = "good_id")
     private Long goodId;
 
@@ -31,8 +33,14 @@ public class Good {
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "volume")
-    private Long volume;
+    @Column(name = "height")
+    private BigDecimal height;
+
+    @Column(name = "width")
+    private BigDecimal width;
+
+    @Column(name = "length")
+    private BigDecimal length;
 
     @Column(name = "weight")
     private BigDecimal weight;

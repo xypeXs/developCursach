@@ -13,7 +13,7 @@ public class StorageResponseDto {
     private Long volumeCapacity;
     private BigDecimal weightCapacity;
 
-    private Long volumeUsed;
+    private BigDecimal volumeUsed;
     private BigDecimal weightUsed;
 
 }

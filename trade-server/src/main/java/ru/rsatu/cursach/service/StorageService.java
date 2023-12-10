@@ -3,6 +3,7 @@ package ru.rsatu.cursach.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import ru.rsatu.cursach.entity.Good;
 import ru.rsatu.cursach.entity.Storage;
 import ru.rsatu.cursach.mapper.StorageMapper;
 import ru.rsatu.cursach.repository.StorageRepository;
@@ -13,6 +14,9 @@ import java.util.Optional;
 
 @ApplicationScoped
 public class StorageService {
+
+    @Inject
+    GoodService goodService;
 
     @Inject
     StorageRepository storageRepository;
@@ -43,12 +47,15 @@ public class StorageService {
         storageRepository.delete(storage);
     }
 
-    public Long computeVolumeUsed(Storage storage) {
+    public BigDecimal computeVolumeUsed(Storage storage) {
         if (storage == null)
-            return 0L;
+            return BigDecimal.ZERO;
         return Optional.ofNullable(storage.getStorageGoodList()).orElse(new ArrayList<>()).stream()
-                .mapToLong(storageGood -> storageGood.getStorageGoodId().getGood().getVolume() * storageGood.getQuantity())
-                .sum();
+                .map(storageGood -> {
+                    Good good = storageGood.getStorageGoodId().getGood();
+                    return goodService.computeVolume(good).multiply(BigDecimal.valueOf(storageGood.getQuantity()));
+                })
+                .reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
     }
 
     public BigDecimal computeWeightUsed(Storage storage) {

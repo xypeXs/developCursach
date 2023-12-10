@@ -12,31 +12,35 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
+import ru.rsatu.cursach.data.dto.good.GoodCreateRequestDto;
+import ru.rsatu.cursach.data.dto.good.GoodResponseDto;
+import ru.rsatu.cursach.data.dto.good.GoodUpdateRequestDto;
 import ru.rsatu.cursach.data.dto.storage.StorageCreateRequestDto;
 import ru.rsatu.cursach.data.dto.storage.StorageResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageUpdateRequestDto;
+import ru.rsatu.cursach.service.controller.GoodControllerService;
 import ru.rsatu.cursach.service.controller.StorageControllerService;
 
-@Path("/storage")
-public class StorageController {
+@Path("/good")
+public class GoodController {
 
     @Inject
-    StorageControllerService storageControllerService;
+    GoodControllerService goodControllerService;
 
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createStorage(@RequestBody StorageCreateRequestDto createRequestDto) {
-        StorageResponseDto responseDto = storageControllerService.createStorage(createRequestDto);
+    public Response createGood(@RequestBody GoodCreateRequestDto createRequestDto) {
+        GoodResponseDto responseDto = goodControllerService.createGood(createRequestDto);
         return Response.ok(responseDto).build();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getStorageInfo(@PathParam("id") Long id) {
-        StorageResponseDto responseDto = storageControllerService.getStorageInfo(id);
+    public Response getGoodInfoInfo(@PathParam("id") Long id) {
+        GoodResponseDto responseDto = goodControllerService.getGood(id);
         return Response.ok(responseDto).build();
     }
 
@@ -44,16 +48,16 @@ public class StorageController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateStorageInfo(@PathParam("id") Long id, @RequestBody StorageUpdateRequestDto updateRequestDto) {
-        StorageResponseDto responseDto = storageControllerService.updateStorage(id, updateRequestDto);
+    public Response updateGoodInfo(@PathParam("id") Long id, @RequestBody GoodUpdateRequestDto updateRequestDto) {
+        GoodResponseDto responseDto = goodControllerService.updateGood(id, updateRequestDto);
         return Response.ok(responseDto).build();
     }
 
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteStorage(@PathParam("id") Long id) {
-        storageControllerService.deleteStorage(id);
+    public Response deleteGood(@PathParam("id") Long id) {
+        goodControllerService.deleteGood(id);
         return Response.ok().build();
     }
 
