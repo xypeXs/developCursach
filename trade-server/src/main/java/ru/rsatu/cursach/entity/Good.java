@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import ru.rsatu.cursach.entity.base.BaseHistoryEntity;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "GOODS")
-public class Good {
+public class Good extends BaseHistoryEntity {
 
     @Id
     @EqualsAndHashCode.Include

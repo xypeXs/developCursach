@@ -14,9 +14,9 @@ public class SupplierScheduler {
     @Inject
     SupplierService supplierService;
 
-    @Scheduled(cron = "${scheduler.supplier.rating-update-cron}")
+/*    @Scheduled(cron = "${scheduler.supplier.rating-update-cron}")
     void updateRating() {
         List<Supplier> supplierList = supplierService.getAllSuppliers();
 
-    }
+    }*/
 }

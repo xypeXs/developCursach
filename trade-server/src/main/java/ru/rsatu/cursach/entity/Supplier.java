@@ -6,14 +6,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import ru.rsatu.cursach.entity.base.BaseHistoryEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "SUPPLIERS")
-public class Supplier {
+public class Supplier extends BaseHistoryEntity {
 
     @Id
     @EqualsAndHashCode.Include

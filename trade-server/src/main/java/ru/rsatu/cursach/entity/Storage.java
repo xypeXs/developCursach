@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import ru.rsatu.cursach.entity.base.BaseHistoryEntity;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "STORAGES")
-public class Storage {
+public class Storage extends BaseHistoryEntity {
 
     @Id
     @GeneratedValue(generator = "STORAGE_ID_SEQ")

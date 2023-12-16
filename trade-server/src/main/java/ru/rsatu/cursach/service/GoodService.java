@@ -36,9 +36,11 @@ public class GoodService {
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void deleteGood(Good good) {
+    public void deleteGood(Long id) {
         // TODO check storages and deliveries
-        goodRepository.delete(good);
+        Good good = goodRepository.findById(id);
+        good.setIsActive(false);
+        goodRepository.persist(good);
     }
 
     public BigDecimal computeVolume(Good good) {

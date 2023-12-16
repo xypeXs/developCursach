@@ -24,6 +24,7 @@ public abstract class StorageMapper {
     @Mapping(target = "address", source = "address")
     @Mapping(target = "volumeCapacity", source = "volumeCapacity")
     @Mapping(target = "weightCapacity", source = "weightCapacity")
+    @Mapping(target = "isActive", expression = "java(true)")
     public abstract Storage mapToStorage(StorageCreateRequestDto createRequestDto);
 
     @BeanMapping(ignoreByDefault = true)

@@ -17,7 +17,7 @@
             </column>
             <column name="LEGAL_ADDRESS" type="VARCHAR(1000)" remarks="Юридический адрес"/>
             <column name="NAME" type="VARCHAR(1000)" remarks="Полное наименование поставщика"/>
-            <column name="RATING" type="NUMERIC(2, 1)" remarks="Рейтинг поставщика"/>
+            <column name="RATING" type="NUMERIC(1)" defaultValue="0" remarks="Рейтинг поставщика"/>
             <column name="REGISTRATION_DATE" type="DATE" remarks="Дата регистрации поставщика"/>
         </createTable>
     </changeSet>
@@ -30,6 +30,20 @@
                         startValue="1000"
                         incrementBy="1"
                         maxValue="9223372036854775807"/>
+    </changeSet>
+
+    <changeSet id="add-column-IS_ACTIVE-to-SUPPLIERS" author="gananiev">
+        <preConditions>
+            <and>
+                <tableExists tableName="SUPPLIERS"/>
+                <not>
+                    <columnExists tableName="SUPPLIERS" columnName="IS_ACTIVE"/>
+                </not>
+            </and>
+        </preConditions>
+        <addColumn tableName="SUPPLIERS">
+            <column name="IS_ACTIVE" type="BOOLEAN" defaultValue="true" remarks="Активная запись (да/нет)"/>
+        </addColumn>
     </changeSet>
 
 </databaseChangeLog>

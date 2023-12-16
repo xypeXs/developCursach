@@ -22,6 +22,7 @@ public abstract class GoodMapper {
     @Mapping(target = "width", source = "width")
     @Mapping(target = "length", source = "length")
     @Mapping(target = "weight", source = "weight")
+    @Mapping(target = "isActive", expression = "java(true)")
     public abstract Good mapToGood(GoodCreateRequestDto createRequestDto);
 
     @BeanMapping(ignoreByDefault = true)

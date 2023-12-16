@@ -7,7 +7,7 @@
     <include file="GOODS/main.xml" relativeToChangelogFile="true"/>
     <include file="STORAGES/main.xml" relativeToChangelogFile="true"/>
     <include file="STORAGE_REL_GOOD/main.xml" relativeToChangelogFile="true"/>
-    <include file="SUPPLIER/main.xml" relativeToChangelogFile="true"/>
+    <include file="SUPPLIERS/main.xml" relativeToChangelogFile="true"/>
     <include file="SUPPLIER_OFFERS/main.xml" relativeToChangelogFile="true"/>
     <include file="DELIVERY_STATUSES/main.xml" relativeToChangelogFile="true"/>
     <include file="DELIVERIES/main.xml" relativeToChangelogFile="true"/>

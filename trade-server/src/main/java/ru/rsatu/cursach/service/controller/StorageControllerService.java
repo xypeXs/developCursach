@@ -2,6 +2,7 @@ package ru.rsatu.cursach.service.controller;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import ru.rsatu.cursach.data.dto.storage.StorageCreateRequestDto;
 import ru.rsatu.cursach.data.dto.storage.StorageResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageUpdateRequestDto;
@@ -37,7 +38,6 @@ public class StorageControllerService {
     }
 
     public void deleteStorage(Long id) {
-        Storage storage = storageService.getStorage(id);
-        storageService.deleteStorage(storage);
+        storageService.deleteStorage(id);
     }
 }

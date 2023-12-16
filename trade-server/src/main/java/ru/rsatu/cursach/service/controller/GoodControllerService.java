@@ -37,7 +37,6 @@ public class GoodControllerService {
     }
 
     public void deleteGood(Long id) {
-        Good good = goodService.getGood(id);
-        goodService.deleteGood(good);
+        goodService.deleteGood(id);
     }
 }

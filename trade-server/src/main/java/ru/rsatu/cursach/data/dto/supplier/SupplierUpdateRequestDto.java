@@ -5,5 +5,5 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SupplierCreateRequestDto extends BaseSupplierRequestDto {
+public class SupplierUpdateRequestDto extends BaseSupplierRequestDto {
 }

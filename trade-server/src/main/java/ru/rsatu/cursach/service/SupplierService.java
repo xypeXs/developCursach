@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import ru.rsatu.cursach.entity.Supplier;
+import ru.rsatu.cursach.mapper.SupplierMapper;
 import ru.rsatu.cursach.repository.SupplierRepository;
 
 import java.util.List;
@@ -14,12 +15,40 @@ public class SupplierService {
     @Inject
     SupplierRepository supplierRepository;
 
+    @Inject
+    SupplierMapper supplierMapper;
+
     public List<Supplier> getAllSuppliers() {
         return supplierRepository.findAll().list();
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void updateRating(Supplier supplier) {
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public void createSupplier(Supplier supplier) {
+        supplierRepository.persist(supplier);
+    }
+
+    public Supplier getSupplier(Long id) {
+        return supplierRepository.findById(id);
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public void updateSupplier(Long id, Supplier srcSupplier) {
+        // TODO check storages and deliveries
+        Supplier updSupplier = supplierRepository.findById(id);
+        supplierMapper.updateSupplier(srcSupplier, updSupplier);
+        supplierRepository.persist(updSupplier);
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public void deleteSupplier(Long id) {
+        // TODO check storages and deliveries
+        Supplier supplier = supplierRepository.findById(id);
+        supplier.setIsActive(false);
+        supplierRepository.persist(supplier);
     }
 
 }

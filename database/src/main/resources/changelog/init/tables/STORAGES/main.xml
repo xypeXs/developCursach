@@ -30,4 +30,18 @@
                         maxValue="9223372036854775807"/>
     </changeSet>
 
+    <changeSet id="add-column-IS_ACTIVE-to-STORAGES" author="gananiev">
+        <preConditions>
+            <and>
+                <tableExists tableName="STORAGES"/>
+                <not>
+                    <columnExists tableName="STORAGES" columnName="IS_ACTIVE"/>
+                </not>
+            </and>
+        </preConditions>
+        <addColumn tableName="STORAGES">
+            <column name="IS_ACTIVE" type="BOOLEAN" defaultValue="true" remarks="Активная запись (да/нет)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

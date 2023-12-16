@@ -16,16 +16,22 @@
                              primaryKeyName="PK_DELIVERY_ID"/>
             </column>
             <column name="SUPPLIER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставщике (внешний ключ)">
-                <constraints foreignKeyName="FK_SUPPLIER_REL_GOOD_OFFER_SUPPLIER_ID"
+                <constraints foreignKeyName="FK_DELIVERY_SUPPLIER_ID"
                              referencedTableName="SUPPLIERS"
                              referencedColumnNames="SUPPLIER_ID"/>
             </column>
             <column name="GOOD_ID" type="NUMERIC(19)" remarks="Идентификатор записи о товаре (внешний ключ)">
-                <constraints foreignKeyName="FK_SUPPLIER_REL_GOOD_OFFER_GOOD_ID"
+                <constraints foreignKeyName="FK_DELIVERY_GOOD_ID"
                              referencedTableName="GOODS"
                              referencedColumnNames="GOOD_ID"/>
             </column>
+            <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор склада (внешний ключ)">
+                <constraints foreignKeyName="FK_DELIVERY_STORAGE_ID"
+                             referencedTableName="STORAGES"
+                             referencedColumnNames="STORAGE_ID"/>
+            </column>
             <column name="DELIVERY_DATE" type="DATE" remarks="Плановая дата поставки"/>
+            <column name="RATING" type="NUMERIC(1)" defaultValue="0" remarks="Рейтинг поставщика"/>
             <column name="DELIVERY_STATUS_ID" type="NUMERIC(19)" remarks="Идентификатор статуса доставки (внешний ключ)">
                 <constraints foreignKeyName="FK_DELIVERIES_DELIVERY_STATUS_ID"
                              referencedTableName="DELIVERY_STATUSES"

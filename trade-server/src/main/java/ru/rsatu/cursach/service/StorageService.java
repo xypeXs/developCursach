@@ -42,9 +42,11 @@ public class StorageService {
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void deleteStorage(Storage storage) {
+    public void deleteStorage(Long id) {
         // TODO validate orphan goods
-        storageRepository.delete(storage);
+        Storage storage = storageRepository.findById(id);
+        storage.setIsActive(false);
+        storageRepository.persist(storage);
     }
 
     public BigDecimal computeVolumeUsed(Storage storage) {
