@@ -32,7 +32,7 @@
                         maxValue="9223372036854775807"/>
     </changeSet>
 
-    <changeSet id="add-column-IS_ACTIVE-to-SUPPLIERS" author="gananiev">
+    <changeSet id="add-column-IS_ACTIVE-to-SUPPLIERS" author="gananyev">
         <preConditions>
             <and>
                 <tableExists tableName="SUPPLIERS"/>

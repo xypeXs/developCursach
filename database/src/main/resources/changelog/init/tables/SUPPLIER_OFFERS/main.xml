@@ -25,4 +25,25 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="add-column-IS_ACTIVE-to-SUPPLIER_OFFERS" author="gananyev">
+        <preConditions>
+            <and>
+                <tableExists tableName="SUPPLIER_OFFERS"/>
+                <not>
+                    <columnExists tableName="SUPPLIER_OFFERS" columnName="IS_ACTIVE"/>
+                </not>
+            </and>
+        </preConditions>
+        <addColumn tableName="SUPPLIER_OFFERS">
+            <column name="IS_ACTIVE" type="BOOLEAN" defaultValue="true" remarks="Активная запись (да/нет)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add-unique-constraint-to-SUPPLIER_OFFERS" author="gananyev">
+        <preConditions>
+            <tableExists tableName="SUPPLIER_OFFERS"/>
+        </preConditions>
+        <addUniqueConstraint tableName="SUPPLIER_OFFERS" columnNames="SUPPLIER_ID, GOOD_ID"/>
+    </changeSet>
+
 </databaseChangeLog>

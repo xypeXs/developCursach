@@ -27,7 +27,7 @@ public class SupplierController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createGood(@RequestBody SupplierCreateRequestDto createRequestDto) {
+    public Response createSupplier(@RequestBody SupplierCreateRequestDto createRequestDto) {
         SupplierResponseDto responseDto = supplierControllerService.createSupplier(createRequestDto);
         return Response.ok(responseDto).build();
     }
@@ -35,7 +35,7 @@ public class SupplierController {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getGoodInfoInfo(@PathParam("id") Long id) {
+    public Response getSupplier(@PathParam("id") Long id) {
         SupplierResponseDto responseDto = supplierControllerService.getSupplier(id);
         return Response.ok(responseDto).build();
     }
@@ -44,7 +44,7 @@ public class SupplierController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateGoodInfo(@PathParam("id") Long id, @RequestBody SupplierUpdateRequestDto updateRequestDto) {
+    public Response updateSupplier(@PathParam("id") Long id, @RequestBody SupplierUpdateRequestDto updateRequestDto) {
         SupplierResponseDto responseDto = supplierControllerService.updateSupplier(id, updateRequestDto);
         return Response.ok(responseDto).build();
     }
@@ -52,7 +52,7 @@ public class SupplierController {
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteGood(@PathParam("id") Long id) {
+    public Response deleteSupplier(@PathParam("id") Long id) {
         supplierControllerService.deleteSupplier(id);
         return Response.ok().build();
     }

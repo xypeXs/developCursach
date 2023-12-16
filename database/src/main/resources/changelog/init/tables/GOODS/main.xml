@@ -33,7 +33,7 @@
                         maxValue="9223372036854775807"/>
     </changeSet>
 
-    <changeSet id="add-column-IS_ACTIVE-to-GOODS" author="gananiev">
+    <changeSet id="add-column-IS_ACTIVE-to-GOODS" author="gananyev">
         <preConditions>
             <and>
                 <tableExists tableName="GOODS"/>

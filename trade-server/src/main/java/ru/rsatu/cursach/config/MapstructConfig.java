@@ -5,7 +5,7 @@ import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValueMappingStrategy;
 
 @MapperConfig(
-        componentModel = "cdi",
+        componentModel = "jakarta-cdi",
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
         nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
 )

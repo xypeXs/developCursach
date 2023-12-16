@@ -4,6 +4,7 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 import ru.rsatu.cursach.config.MapstructConfig;
 import ru.rsatu.cursach.data.dto.good.GoodCreateRequestDto;
 import ru.rsatu.cursach.data.dto.good.GoodResponseDto;
@@ -43,6 +44,7 @@ public abstract class GoodMapper {
     @Mapping(target = "weight", source = "weight")
     public abstract void updateGood(Good src, @MappingTarget Good upd);
 
+    @Named("mapToGoodDto")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "goodId")
     @Mapping(target = "name", source = "name")

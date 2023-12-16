@@ -2,8 +2,10 @@ package ru.rsatu.cursach.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,6 +14,7 @@ import ru.rsatu.cursach.entity.base.BaseHistoryEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,5 +40,8 @@ public class Supplier extends BaseHistoryEntity {
 
     @Column(name = "rating")
     private BigDecimal rating;
+
+    @OneToMany(mappedBy = "id.supplier", fetch = FetchType.LAZY, cascade = {})
+    private List<SupplierOffer> offerList;
 
 }

@@ -25,4 +25,11 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="add-unique-constraint-to-STORAGE_REL_GOOD" author="gananyev">
+        <preConditions>
+            <tableExists tableName="STORAGE_REL_GOOD"/>
+        </preConditions>
+        <addUniqueConstraint tableName="STORAGE_REL_GOOD" columnNames="STORAGE_ID, GOOD_ID"/>
+    </changeSet>
+
 </databaseChangeLog>

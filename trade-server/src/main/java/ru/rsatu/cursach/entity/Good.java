@@ -48,4 +48,7 @@ public class Good extends BaseHistoryEntity {
 
     @OneToMany(mappedBy = "storageGoodId.good", fetch = FetchType.LAZY, cascade = {})
     private List<StorageGood> storageGoodList;
+
+    @OneToMany(mappedBy = "id.good", fetch = FetchType.LAZY, cascade = {})
+    private List<SupplierOffer> offerList;
 }
