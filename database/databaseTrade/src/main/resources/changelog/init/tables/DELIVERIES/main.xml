@@ -11,7 +11,7 @@
             </not>
         </preConditions>
         <createTable tableName="DELIVERIES">
-            <column name="DELIVERY_ID" type="VARCHAR(36)" remarks="Идентификатор записи о поставке (первичный ключ)">
+            <column name="DELIVERY_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставке (первичный ключ)">
                 <constraints primaryKey="true"
                              primaryKeyName="PK_DELIVERY_ID"/>
             </column>
@@ -32,6 +32,7 @@
             </column>
             <column name="DELIVERY_DATE" type="DATE" remarks="Плановая дата поставки"/>
             <column name="RATING" type="NUMERIC(1)" defaultValue="0" remarks="Рейтинг поставщика"/>
+            <column name="QUANTITY" type="NUMERIC(19)" remarks="Количество товаров в поставке"/>
             <column name="DELIVERY_STATUS_ID" type="NUMERIC(19)" remarks="Идентификатор статуса доставки (внешний ключ)">
                 <constraints foreignKeyName="FK_DELIVERIES_DELIVERY_STATUS_ID"
                              referencedTableName="DELIVERY_STATUSES"

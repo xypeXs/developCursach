@@ -10,7 +10,11 @@ public enum DeliveryStatusEnum {
     PENDING("PENDING", "В обработке"),
     PENDING_SUPPLIER("PENDING_SUPPLIER", "На одобрении у поставщика"),
     ACCEPTED_SUPPLIER("ACCEPTED_SUPPLIER", "Принята поставщиком"),
-    REJECTED_SUPPLIER("REJECTED_SUPPLIER", "Отклонена поставщиком");
+    REJECTED_SUPPLIER("REJECTED_SUPPLIER", "Отклонена поставщиком"),
+    ON_WAY("ON_WAY", "В пути"),
+    DELIVERED("DELIVERED", "Доставлено")
+
+    ;
 
 
     private String code;

@@ -21,5 +21,10 @@ mp:
         group.id: supplier_delivery_request
 
 scheduler:
-  delivery-request-process:
-    cron: "0 /2 * * * ?"
+  delivery:
+    process-request:
+      cron: "0 /1 * * * ?"
+    proceed-accepted-status:
+      cron: "/45 * * * * ?"
+    proceed-moving-status:
+      cron: "0 /1 * * * ?"

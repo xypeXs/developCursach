@@ -7,12 +7,12 @@ import jakarta.transaction.Transactional;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import ru.rsatu.cursach.entity.Delivery;
 import ru.rsatu.cursach.mapper.DeliveryMapper;
-import ru.rsatu.cursach.model.kafka.DeliveryRequestRecord;
+import ru.rsatu.cursach.model.kafka.DeliveryResponseRecord;
 import ru.rsatu.cursach.model.kafka.KafkaConstant;
 import ru.rsatu.cursach.service.DeliveryService;
 
 @ApplicationScoped
-public class DeliveryRequestConsumer {
+public class DeliveryResponseConsumer {
 
     @Inject
     DeliveryService deliveryService;
@@ -22,10 +22,9 @@ public class DeliveryRequestConsumer {
 
     @Blocking
     @Transactional
-    @Incoming(KafkaConstant.Topic.DELIVERY_REQUEST)
-    public void receiveDeliveryRequest(DeliveryRequestRecord requestRecord) {
-        Delivery delivery = deliveryMapper.mapToEntity(requestRecord);
-        deliveryService.createDeliveryRequest(delivery);
-        deliveryService.sendDeliveryResponse(delivery);
+    @Incoming(KafkaConstant.Topic.DELIVERY_RESPONSE)
+    public void receiveDeliveryResponse(DeliveryResponseRecord responseRecord) {
+        Delivery delivery = deliveryMapper.mapToEntity(responseRecord);
+        deliveryService.processDeliveryResponse(delivery);
     }
 }

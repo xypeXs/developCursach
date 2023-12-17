@@ -20,6 +20,10 @@
             VALUES (102, 'ACCEPTED_SUPPLIER', 'Принята поставщиком');
             INSERT INTO DELIVERY_STATUSES(DELIVERY_STATUS_ID, CODE, NAME)
             VALUES (103, 'REJECTED_SUPPLIER', 'Отклонена поставщиком');
+            INSERT INTO DELIVERY_STATUSES(DELIVERY_STATUS_ID, CODE, NAME)
+            VALUES (104, 'ON_WAY', 'В пути');
+            INSERT INTO DELIVERY_STATUSES(DELIVERY_STATUS_ID, CODE, NAME)
+            VALUES (105, 'DELIVERED', 'Доставлено');
         </sql>
     </changeSet>
 </databaseChangeLog>

@@ -15,4 +15,5 @@ public class DeliveryResponseDto {
     private GoodResponseDto goodInfo;
     private LocalDate deliveryDate;
     private BaseReferenceDto deliveryStatus;
+    private Long quantity;
 }

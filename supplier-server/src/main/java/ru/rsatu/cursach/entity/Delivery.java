@@ -16,7 +16,6 @@ import ru.rsatu.cursach.entity.reference.DeliveryStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -33,7 +32,7 @@ public class Delivery {
     private Long id;
 
     @Column(name = "UUID")
-    private UUID uuid;
+    private String uuid;
 
     @Column(name = "SUPPLIER_ID")
     private Long supplierId;
@@ -48,7 +47,10 @@ public class Delivery {
     private LocalDate deliveryDate;
 
     @Column(name = "RATING")
-    private BigDecimal rating;
+    private Integer rating;
+
+    @Column(name = "QUANTITY")
+    private Long quantity;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "DELIVERY_STATUS_ID")

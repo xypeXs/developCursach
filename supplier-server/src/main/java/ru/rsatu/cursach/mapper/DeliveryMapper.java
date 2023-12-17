@@ -27,11 +27,13 @@ public abstract class DeliveryMapper {
     @Mapping(target = "deliveryDate", source = "deliveryDate")
     @Mapping(target = "uuid", source = "deliveryUUID")
     @Mapping(target = "status", expression = "java(referenceService.getDeliveryStatus(DeliveryStatusEnum.PENDING_SUPPLIER))")
+    @Mapping(target = "quantity", source = "quantity")
     public abstract Delivery mapToEntity(DeliveryRequestRecord requestRecord);
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "deliveryUUID", source = "uuid")
     @Mapping(target = "deliveryDate", source = "deliveryDate")
     @Mapping(target = "statusCode", source = "status.code")
+    @Mapping(target = "quantity", source = "quantity")
     public abstract DeliveryResponseRecord mapToRecord(Delivery delivery);
 }

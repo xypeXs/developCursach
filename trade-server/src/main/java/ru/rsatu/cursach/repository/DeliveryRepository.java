@@ -6,4 +6,9 @@ import ru.rsatu.cursach.entity.Delivery;
 
 @ApplicationScoped
 public class DeliveryRepository implements PanacheRepositoryBase<Delivery, Long> {
+
+    public Delivery findByUUID(String uuid) {
+        String query = "from Delivery where uuid = ?1";
+        return find(query, uuid).firstResult();
+    }
 }
