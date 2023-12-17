@@ -1,9 +1,10 @@
 package ru.rsatu.cursach.mapper;
 
 import org.mapstruct.BeanMapping;
-import org.mapstruct.InheritConfiguration;
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import ru.rsatu.cursach.config.MapstructConfig;
 import ru.rsatu.cursach.data.dto.reference.BaseReferenceDto;
 import ru.rsatu.cursach.data.dto.reference.BaseReferencePageDto;
@@ -17,12 +18,13 @@ import java.util.List;
 )
 public interface ReferenceMapper {
 
+    @Named("referenceBase")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "code", source = "code")
     @Mapping(target = "name", source = "name")
     BaseReferenceDto mapToDto(BaseReferenceEntity entity);
 
-    @InheritConfiguration
+    @IterableMapping(qualifiedByName = )
     List<BaseReferenceDto> mapToDtoList(List<BaseReferenceEntity> entityList);
 
     default BaseReferencePageDto mapToPageDto(List<BaseReferenceEntity> entitiyList, Long total) {

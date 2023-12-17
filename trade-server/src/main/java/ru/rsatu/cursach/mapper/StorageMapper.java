@@ -5,6 +5,7 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 import ru.rsatu.cursach.config.MapstructConfig;
 import ru.rsatu.cursach.data.dto.storage.StorageCreateRequestDto;
 import ru.rsatu.cursach.data.dto.storage.StorageResponseDto;
@@ -39,6 +40,7 @@ public abstract class StorageMapper {
     @Mapping(target = "weightCapacity", source = "weightCapacity")
     public abstract void updateStorage(Storage src, @MappingTarget Storage upd);
 
+    @Named("mapToStorageDto")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "storageId", source = "storageId")
     @Mapping(target = "address", source = "address")
