@@ -9,8 +9,10 @@ import ru.rsatu.cursach.config.MapstructConfig;
 import ru.rsatu.cursach.data.dto.reference.BaseReferenceDto;
 import ru.rsatu.cursach.data.dto.reference.BaseReferencePageDto;
 import ru.rsatu.cursach.entity.base.BaseReferenceEntity;
+import ru.rsatu.cursach.entity.reference.DeliveryStatus;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(
         config = MapstructConfig.class,
@@ -24,13 +26,18 @@ public interface ReferenceMapper {
     @Mapping(target = "name", source = "name")
     BaseReferenceDto mapToDto(BaseReferenceEntity entity);
 
-    @IterableMapping(qualifiedByName = )
+    @IterableMapping(qualifiedByName = "referenceBase")
     List<BaseReferenceDto> mapToDtoList(List<BaseReferenceEntity> entityList);
 
-    default BaseReferencePageDto mapToPageDto(List<BaseReferenceEntity> entitiyList, Long total) {
+    default <E extends BaseReferenceEntity> BaseReferencePageDto mapToPageDto(List<E> entitiyList, Long total) {
         if (entitiyList == null)
             return BaseReferencePageDto.empty();
-        List<BaseReferenceDto> referenceDtoList = mapToDtoList(entitiyList);
+
+        List<BaseReferenceEntity> baseReferenceEntityList = entitiyList.stream()
+                .map(e -> (BaseReferenceEntity) e)
+                .collect(Collectors.toList());
+
+        List<BaseReferenceDto> referenceDtoList = mapToDtoList(baseReferenceEntityList);
         return new BaseReferencePageDto(referenceDtoList, total);
     }
 }

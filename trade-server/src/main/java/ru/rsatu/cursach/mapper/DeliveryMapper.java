@@ -9,16 +9,18 @@ import ru.rsatu.cursach.data.dto.delivery.DeliveryCreateRequestDto;
 import ru.rsatu.cursach.data.dto.delivery.DeliveryResponseDto;
 import ru.rsatu.cursach.data.enums.reference.DeliveryStatusEnum;
 import ru.rsatu.cursach.entity.Delivery;
+import ru.rsatu.cursach.model.kafka.DeliveryRequestRecord;
 import ru.rsatu.cursach.service.GoodService;
 import ru.rsatu.cursach.service.ReferenceService;
 import ru.rsatu.cursach.service.StorageService;
 import ru.rsatu.cursach.service.SupplierService;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Mapper(
         config = MapstructConfig.class,
-        imports = {BigDecimal.class, DeliveryStatusEnum.class},
+        imports = {BigDecimal.class, DeliveryStatusEnum.class, UUID.class},
         uses = {StorageMapper.class, GoodMapper.class, SupplierMapper.class, ReferenceMapper.class}
 )
 public abstract class DeliveryMapper {
@@ -42,6 +44,7 @@ public abstract class DeliveryMapper {
     @Mapping(target = "supplier", expression = "java(supplierService.getSupplier(createRequestDto.getSupplierId()))")
     @Mapping(target = "rating", expression = "java(BigDecimal.ZERO)")
     @Mapping(target = "status", expression = "java(referenceService.getDeliveryStatus(DeliveryStatusEnum.PENDING))")
+    @Mapping(target = "uuid", expression = "java(UUID.randomUUID())")
     public abstract Delivery mapToDelivery(DeliveryCreateRequestDto createRequestDto);
 
     @BeanMapping(ignoreByDefault = true)
@@ -51,4 +54,12 @@ public abstract class DeliveryMapper {
     @Mapping(target = "deliveryDate", source = "deliveryDate")
     @Mapping(target = "deliveryStatus", source = "status", qualifiedByName = "referenceBase")
     public abstract DeliveryResponseDto mapToResponse(Delivery delivery);
+
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "deliveryUUID", source = "uuid")
+    @Mapping(target = "deliveryDate", source = "deliveryDate")
+    @Mapping(target = "storageId", source = "storage.storageId")
+    @Mapping(target = "goodId", source = "good.goodId")
+    @Mapping(target = "supplierId", source = "supplier.id")
+    public abstract DeliveryRequestRecord mapToDeliveryRecord(Delivery delivery);
 }

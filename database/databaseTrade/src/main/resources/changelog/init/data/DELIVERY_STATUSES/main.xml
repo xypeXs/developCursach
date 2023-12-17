@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-table-DELIVERY_STATUSES" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="DELIVERY_STATUSES"/>
+                <sqlCheck expectedResult="0">SELECT COUNT(*) FROM DELIVERY_STATUSES</sqlCheck>
+            </and>
+        </preConditions>
+        <sql>
+            INSERT INTO DELIVERY_STATUSES(DELIVERY_STATUS_ID, CODE, NAME)
+            VALUES (100, 'PENDING', 'В обработке');
+            INSERT INTO DELIVERY_STATUSES(DELIVERY_STATUS_ID, CODE, NAME)
+            VALUES (101, 'PENDING_SUPPLIER', 'На одобрении у поставщика');
+            INSERT INTO DELIVERY_STATUSES(DELIVERY_STATUS_ID, CODE, NAME)
+            VALUES (102, 'ACCEPTED_SUPPLIER', 'Принята поставщиком');
+            INSERT INTO DELIVERY_STATUSES(DELIVERY_STATUS_ID, CODE, NAME)
+            VALUES (103, 'REJECTED_SUPPLIER', 'Отклонена поставщиком');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

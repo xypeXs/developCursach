@@ -1,0 +1,70 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-table-DELIVERIES" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="DELIVERIES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="DELIVERIES">
+            <column name="DELIVERY_ID" type="VARCHAR(36)" remarks="Идентификатор записи о поставке (первичный ключ)">
+                <constraints primaryKey="true"
+                             primaryKeyName="PK_DELIVERY_ID"/>
+            </column>
+            <column name="SUPPLIER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставщике (внешний ключ)">
+                <constraints foreignKeyName="FK_DELIVERY_SUPPLIER_ID"
+                             referencedTableName="SUPPLIERS"
+                             referencedColumnNames="SUPPLIER_ID"/>
+            </column>
+            <column name="GOOD_ID" type="NUMERIC(19)" remarks="Идентификатор записи о товаре (внешний ключ)">
+                <constraints foreignKeyName="FK_DELIVERY_GOOD_ID"
+                             referencedTableName="GOODS"
+                             referencedColumnNames="GOOD_ID"/>
+            </column>
+            <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор склада (внешний ключ)">
+                <constraints foreignKeyName="FK_DELIVERY_STORAGE_ID"
+                             referencedTableName="STORAGES"
+                             referencedColumnNames="STORAGE_ID"/>
+            </column>
+            <column name="DELIVERY_DATE" type="DATE" remarks="Плановая дата поставки"/>
+            <column name="RATING" type="NUMERIC(1)" defaultValue="0" remarks="Рейтинг поставщика"/>
+            <column name="DELIVERY_STATUS_ID" type="NUMERIC(19)" remarks="Идентификатор статуса доставки (внешний ключ)">
+                <constraints foreignKeyName="FK_DELIVERIES_DELIVERY_STATUS_ID"
+                             referencedTableName="DELIVERY_STATUSES"
+                             referencedColumnNames="DELIVERY_STATUS_ID"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-sequence-generator-DELIVERIES" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="DELIVERIES"/>
+        </preConditions>
+        <createSequence sequenceName="DELIVERY_ID_SEQ"
+                        startValue="1000"
+                        incrementBy="1"
+                        maxValue="9223372036854775807"/>
+    </changeSet>
+
+    <changeSet id="add-column-uuid-to-DELIVERIES" author="gananyev">
+        <preConditions>
+            <and>
+                <tableExists tableName="DELIVERIES"/>
+                <not>
+                    <columnExists tableName="DELIVERIES" columnName="UUID"/>
+                </not>
+            </and>
+        </preConditions>
+        <addColumn tableName="DELIVERIES">
+            <column name="UUID" type="VARCHAR(36)" remarks="Уникальный идентификатор поставки">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addUniqueConstraint tableName="DELIVERIES" columnNames="UUID"/>
+    </changeSet>
+
+</databaseChangeLog>

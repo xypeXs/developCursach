@@ -1,0 +1,25 @@
+quarkus:
+  http:
+    root-path: /supplier-service
+    port: 9090
+  datasource:
+    jdbc:
+      url: jdbc:postgresql://postgres:5432/SUPPLIER
+    db-kind: postgresql
+    username: admin
+    password: admin
+  hibernate-orm:
+    database.generation: none
+
+kafka:
+  bootstrap:
+    servers: kafka:9002
+mp:
+  messaging:
+    incoming:
+      delivery_request:
+        group.id: supplier_delivery_request
+
+scheduler:
+  delivery-request-process:
+    cron: "0 /2 * * * ?"

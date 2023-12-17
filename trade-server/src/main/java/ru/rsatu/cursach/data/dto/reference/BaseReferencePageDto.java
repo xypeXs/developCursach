@@ -1,7 +1,5 @@
 package ru.rsatu.cursach.data.dto.reference;
 
-import ru.rsatu.cursach.data.dto.base.BasePageDto;
-
 import java.util.List;
 
 public class BaseReferencePageDto extends BasePageDto<BaseReferenceDto> {

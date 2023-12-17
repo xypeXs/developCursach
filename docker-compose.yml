@@ -14,12 +14,63 @@ services:
     hostname: postgres
     networks:
       - trade_network
+  zookeeper:
+    container_name: zookeeper
+    image: bitnami/zookeeper
+    depends_on:
+      - db
+    environment:
+      - ZOO_PORT_NUMBER=2181
+      - ZOO_ENABLE_AUTH=yes
+      - ZOO_CLIENT_USER=zookeeper
+      - ZOO_CLIENT_PASSWORD=zookeeper_password
+    volumes:
+      - ./infrastructure/zookeeper:/bitnami/zookeeper
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - trade_network
+  kafka:
+    container_name: kafka
+    image: bitnami/kafka
+    depends_on:
+      - db
+      - zookeeper
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ZOOKEEPER_USER=zookeeper
+      - KAFKA_ZOOKEEPER_PASSWORD=zookeeper_password
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka:9002
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9002
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
+    volumes:
+      - ./infrastructure/kafka_data:/bitnami/kafka
+    hostname: kafka
+    ports:
+      - "9002:9002"
+      - "9003:9003"
+    networks:
+      - trade_network
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui
+    hostname: kafkaui
+    environment:
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9002
+    ports:
+      - "9082:8080"
+    networks:
+      - trade_network
   trader_server:
     container_name: trade_server
     image: trade-server
     build:
       context: trade-server
       dockerfile: src/main/docker/Dockerfile.jvm
+    depends_on:
+      - db
     ports:
       - "8080:8080"
     hostname: trade-server
@@ -28,6 +79,8 @@ services:
   keycloak:
     container_name: keycloak_trade
     image: bitnami/keycloak
+    depends_on:
+      - db
     environment:
       - KEYCLOAK_ADMIN_USER=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
@@ -40,8 +93,6 @@ services:
       - "8081:8080"
       - "8443:8443"
     hostname: keycloak
-    depends_on:
-      - db
     networks:
       - trade_network
 networks:

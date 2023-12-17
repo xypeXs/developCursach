@@ -6,6 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Supplier extends BaseHistoryEntity {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(generator = "SUPPLIER_ID_SEQ")
+    @SequenceGenerator(name="SUPPLIER_ID_SEQ", sequenceName="SUPPLIER_ID_SEQ", allocationSize = 1)
     @Column(name = "supplier_id")
     private Long id;
 

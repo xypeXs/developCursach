@@ -29,9 +29,7 @@ public class ReferenceControllerService {
 
     public BaseReferencePageDto getDeliveryStatusList(Integer index, Integer size) {
         Page page = Page.of(index == null ? 0 : index, size);
-        List<BaseReferenceEntity> deliveryStatusList = referenceService.getDeliveryStatusPage(page).stream()
-                .map(entity -> (BaseReferenceEntity) entity)
-                .collect(Collectors.toList());
+        List<DeliveryStatus> deliveryStatusList = referenceService.getDeliveryStatusPage(page);
         Long totalCnt = referenceService.getDeliveryStatusCount();
         return referenceMapper.mapToPageDto(deliveryStatusList, totalCnt);
     }
