@@ -1,0 +1,14 @@
+quarkus:
+  http:
+    root-path: /trade-service
+  datasource:
+    jdbc:
+      url: jdbc:postgresql://postgres:5432/TRADE
+    db-kind: postgresql
+    username: admin
+    password: admin
+hibernate-orm:
+  database.generation: none
+
+scheduler:
+  rating-update-cron: 0 2 * * *
