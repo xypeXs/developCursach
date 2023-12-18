@@ -21,7 +21,6 @@ public class DeliveryResponseConsumer {
     DeliveryMapper deliveryMapper;
 
     @Blocking
-    @Transactional
     @Incoming(KafkaConstant.Topic.DELIVERY_RESPONSE)
     public void receiveDeliveryResponse(DeliveryResponseRecord responseRecord) {
         Delivery delivery = deliveryMapper.mapToEntity(responseRecord);

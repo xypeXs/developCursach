@@ -18,6 +18,7 @@ public class SupplierService {
     @Inject
     SupplierMapper supplierMapper;
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public List<Supplier> getAllSuppliers() {
         return supplierRepository.findAll().list();
     }
@@ -31,6 +32,7 @@ public class SupplierService {
         supplierRepository.persist(supplier);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public Supplier getSupplier(Long id) {
         return supplierRepository.findById(id);
     }

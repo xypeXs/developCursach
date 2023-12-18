@@ -29,7 +29,7 @@ public class DeliveryService {
     DeliveryRepository deliveryRepository;
 
     @Transactional
-    public void createDeliveryRequest(Delivery delivery) {
+    public void saveDeliveryRequest(Delivery delivery) {
         deliveryRepository.persist(delivery);
     }
 
@@ -37,11 +37,12 @@ public class DeliveryService {
         deliveryResponseProducer.sendDeliveryResponse(delivery);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public List<Delivery> getDeliveriesByStatus(DeliveryStatusEnum statusEnum) {
         return deliveryRepository.findAllByStatus(statusEnum);
     }
 
-    @Transactional
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public List<Delivery> processDeliveryRequests() {
         List<Delivery> pendingDeliveryList = getDeliveriesByStatus(DeliveryStatusEnum.PENDING_SUPPLIER);
         if (CollectionUtils.isEmpty(pendingDeliveryList))
@@ -53,7 +54,7 @@ public class DeliveryService {
         return processedDeliveries;
     }
 
-    @Transactional
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public List<Delivery> processAcceptedDeliveries(DeliveryStatusEnum initialStatusEnum, DeliveryStatusEnum targetStatusEnum) {
         List<Delivery> aceptedDeliveryList = getDeliveriesByStatus(initialStatusEnum);
         if (CollectionUtils.isEmpty(aceptedDeliveryList))
@@ -66,10 +67,10 @@ public class DeliveryService {
         return processedDeliveries;
     }
 
-    @Transactional
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public List<Delivery> processMovingDeliveries(DeliveryStatusEnum initialStatusEnum, DeliveryStatusEnum targetStatusEnum) {
         List<Delivery> almostDeliveredList = getDeliveriesByStatus(initialStatusEnum).stream()
-                .filter(delivery -> !delivery.getDeliveryDate().isBefore(LocalDate.now()))
+                .filter(delivery -> !LocalDate.now().isBefore(delivery.getDeliveryDate()))
                 .toList();
         if (CollectionUtils.isEmpty(almostDeliveredList))
             return new ArrayList<>();

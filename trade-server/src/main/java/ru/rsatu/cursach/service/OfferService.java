@@ -41,14 +41,14 @@ public class OfferService {
 
     public List<SupplierOffer> getSupplierOfferListBySupplierId(Long supplierId) {
         Supplier supplier = supplierService.getSupplier(supplierId);
-        return Optional.ofNullable(supplier.getOfferList()).orElse(new ArrayList<>()).stream()
+        return Optional.ofNullable(supplier).map(Supplier::getOfferList).orElse(new ArrayList<>()).stream()
                 .filter(offer -> BooleanUtils.isTrue(offer.getIsActive()))
                 .collect(Collectors.toList());
     }
 
     public List<SupplierOffer> getSupplierOfferListByGoodId(Long goodId) {
         Good good = goodService.getGood(goodId);
-        return Optional.ofNullable(good.getOfferList()).orElse(new ArrayList<>()).stream()
+        return Optional.ofNullable(good).map(Good::getOfferList).orElse(new ArrayList<>()).stream()
                 .filter(offer -> BooleanUtils.isTrue(offer.getIsActive()))
                 .collect(Collectors.toList());
     }

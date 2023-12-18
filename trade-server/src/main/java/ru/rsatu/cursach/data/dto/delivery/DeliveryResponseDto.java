@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 @Data
 public class DeliveryResponseDto {
+    private String uuid;
     private StorageResponseDto storageInfo;
     private SupplierResponseDto supplierInfo;
     private GoodResponseDto goodInfo;

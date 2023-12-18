@@ -29,6 +29,7 @@ public class StorageService {
         storageRepository.persist(storage);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public Storage getStorage(Long id) {
         return storageRepository.findById(id);
     }

@@ -21,10 +21,14 @@ public class DeliveryService {
     DeliveryMapper deliveryMapper;
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void createDeliveryRequest(Delivery delivery) {
+    public void saveDeliveryRequest(Delivery delivery) {
         // TODO validate storage volume and weight and Offer existence
-        deliveryRequestProducer.sendDeliveryRequest(delivery);
         deliveryRepository.persist(delivery);
+    }
+
+    @Transactional(Transactional.TxType.NOT_SUPPORTED)
+    public void sendDeliveryRequest(Delivery delivery) {
+        deliveryRequestProducer.sendDeliveryRequest(delivery);
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
@@ -33,5 +37,10 @@ public class DeliveryService {
         // TODO validate base info not changed
         deliveryMapper.updateDeliveryBySupplierResponse(responseSrcDelivery, updDelivery);
         deliveryRepository.persist(updDelivery);
+    }
+
+    @Transactional(Transactional.TxType.REQUIRED)
+    public Delivery getDeliveryByUUID(String uuid) {
+        return deliveryRepository.findByUUID(uuid);
     }
 }

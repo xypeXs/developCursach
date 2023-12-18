@@ -19,17 +19,20 @@ public class StorageControllerService {
     @Inject
     StorageMapper storageMapper;
 
+    @Transactional
     public StorageResponseDto getStorageInfo(Long id) {
         Storage storage = storageService.getStorage(id);
         return storageMapper.mapToResponse(storage);
     }
 
+    @Transactional
     public StorageResponseDto createStorage(StorageCreateRequestDto createRequestDto) {
         Storage storage = storageMapper.mapToStorage(createRequestDto);
         storageService.createStorage(storage);
         return storageMapper.mapToResponse(storage);
     }
 
+    @Transactional
     public StorageResponseDto updateStorage(Long id, StorageUpdateRequestDto updateRequestDto) {
         Storage srcStorage = storageMapper.mapToStorage(updateRequestDto);
         storageService.updateStorage(id, srcStorage);
@@ -37,6 +40,7 @@ public class StorageControllerService {
         return storageMapper.mapToResponse(storage);
     }
 
+    @Transactional
     public void deleteStorage(Long id) {
         storageService.deleteStorage(id);
     }

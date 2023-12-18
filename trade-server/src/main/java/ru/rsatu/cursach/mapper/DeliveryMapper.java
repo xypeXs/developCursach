@@ -51,6 +51,7 @@ public abstract class DeliveryMapper {
     public abstract Delivery mapToDelivery(DeliveryCreateRequestDto createRequestDto);
 
     @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "uuid", source = "uuid")
     @Mapping(target = "goodInfo", source = "good", qualifiedByName = "mapToGoodDto")
     @Mapping(target = "storageInfo", source = "storage", qualifiedByName = "mapToStorageDto")
     @Mapping(target = "supplierInfo", source = "supplier", qualifiedByName = "mapToSupplierDto")

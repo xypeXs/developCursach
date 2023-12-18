@@ -2,9 +2,12 @@ package ru.rsatu.cursach.controller;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
@@ -24,6 +27,14 @@ public class DeliveryController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response requestDelivery(@RequestBody DeliveryCreateRequestDto createRequestDto) {
         DeliveryResponseDto responseDto = deliveryControllerService.createDeliveryRequest(createRequestDto);
+        return Response.ok(responseDto).build();
+    }
+
+    @GET
+    @Path("")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getDelivery(@QueryParam("uuid") String uuid) {
+        DeliveryResponseDto responseDto = deliveryControllerService.getDelivery(uuid);
         return Response.ok(responseDto).build();
     }
 }

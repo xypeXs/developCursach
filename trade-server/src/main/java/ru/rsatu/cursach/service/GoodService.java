@@ -23,6 +23,7 @@ public class GoodService {
         goodRepository.persist(good);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public Good getGood(Long id) {
         return goodRepository.findById(id);
     }

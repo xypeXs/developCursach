@@ -3,7 +3,6 @@ package ru.rsatu.cursach.service.kafka.consumer;
 import io.smallrye.common.annotation.Blocking;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import ru.rsatu.cursach.entity.Delivery;
 import ru.rsatu.cursach.mapper.DeliveryMapper;
@@ -21,11 +20,10 @@ public class DeliveryRequestConsumer {
     DeliveryMapper deliveryMapper;
 
     @Blocking
-    @Transactional
     @Incoming(KafkaConstant.Topic.DELIVERY_REQUEST)
     public void receiveDeliveryRequest(DeliveryRequestRecord requestRecord) {
         Delivery delivery = deliveryMapper.mapToEntity(requestRecord);
-        deliveryService.createDeliveryRequest(delivery);
+        deliveryService.saveDeliveryRequest(delivery);
         deliveryService.sendDeliveryResponse(delivery);
     }
 }

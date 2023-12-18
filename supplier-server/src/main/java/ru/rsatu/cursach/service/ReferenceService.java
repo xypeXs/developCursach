@@ -3,6 +3,7 @@ package ru.rsatu.cursach.service;
 import io.quarkus.panache.common.Page;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import ru.rsatu.cursach.data.reference.DeliveryStatusEnum;
 import ru.rsatu.cursach.entity.base.BaseReferenceEntity;
 import ru.rsatu.cursach.entity.reference.DeliveryStatus;
@@ -17,18 +18,22 @@ public class ReferenceService {
     @Inject
     DeliveryStatusRepository deliveryStatusRepository;
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public DeliveryStatus getDeliveryStatus(DeliveryStatusEnum statusEnum) {
         return getDeliveryStatus(statusEnum.getCode());
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public DeliveryStatus getDeliveryStatus(String code) {
         return getBaseReferenceEntityByCode(deliveryStatusRepository, code);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public List<DeliveryStatus> getDeliveryStatusPage(Page page) {
         return getBaseReferenceEntityPage(deliveryStatusRepository, page);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public Long getDeliveryStatusCount() {
         return getBaseReferenceCount(deliveryStatusRepository);
     }
