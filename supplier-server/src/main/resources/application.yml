@@ -19,6 +19,16 @@ mp:
     incoming:
       delivery_request:
         group.id: supplier_delivery_request
+        auto.offset.reset: latest
+        commit-strategy: throttled
+        failure-strategy: fail
+    outgoing:
+      delivery_response:
+        auto.offset.reset: latest
+        commit-strategy: throttled
+        failure-strategy: fail
+
+
 
 scheduler:
   delivery:
