@@ -22,8 +22,3 @@ mp:
         auto.offset.reset: latest
         commit-strategy: throttled
         failure-strategy: fail
-    outgoing:
-      delivery_request:
-        auto.offset.reset: latest
-        commit-strategy: throttled
-        failure-strategy: fail

@@ -2,19 +2,25 @@ package ru.rsatu.cursach.mapper;
 
 import jakarta.inject.Inject;
 import org.mapstruct.BeanMapping;
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import ru.rsatu.cursach.config.MapstructConfig;
 import ru.rsatu.cursach.data.dto.storage.StorageCreateRequestDto;
+import ru.rsatu.cursach.data.dto.storage.StorageGoodResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageUpdateRequestDto;
 import ru.rsatu.cursach.entity.Storage;
+import ru.rsatu.cursach.entity.StorageGood;
 import ru.rsatu.cursach.service.StorageService;
 
+import java.util.List;
+
 @Mapper(
-        config = MapstructConfig.class
+        config = MapstructConfig.class,
+        uses = {GoodMapper.class}
 )
 public abstract class StorageMapper {
 
@@ -49,4 +55,13 @@ public abstract class StorageMapper {
     @Mapping(target = "volumeUsed", expression = "java(storageService.computeVolumeUsed(storage))")
     @Mapping(target = "weightUsed", expression = "java(storageService.computeWeightUsed(storage))")
     public abstract StorageResponseDto mapToResponse(Storage storage);
+
+    @Named("mapToStorageGoodDto")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "goodInfo", source = "storageGoodId.good", qualifiedByName = "mapToGoodDto")
+    @Mapping(target = "quantity", source = "quantity")
+    public abstract StorageGoodResponseDto mapToStorageGoodResponse(StorageGood storageGood);
+
+    @IterableMapping(qualifiedByName = "mapToStorageGoodDto")
+    public abstract List<StorageGoodResponseDto> mapToStorageGoodResponse(List<StorageGood> storageGood);
 }

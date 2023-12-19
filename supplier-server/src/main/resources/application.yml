@@ -14,6 +14,7 @@ quarkus:
 kafka:
   bootstrap:
     servers: kafka:9002
+
 mp:
   messaging:
     incoming:
@@ -22,13 +23,6 @@ mp:
         auto.offset.reset: latest
         commit-strategy: throttled
         failure-strategy: fail
-    outgoing:
-      delivery_response:
-        auto.offset.reset: latest
-        commit-strategy: throttled
-        failure-strategy: fail
-
-
 
 scheduler:
   delivery:

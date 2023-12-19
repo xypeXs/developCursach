@@ -4,11 +4,14 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import ru.rsatu.cursach.data.dto.storage.StorageCreateRequestDto;
+import ru.rsatu.cursach.data.dto.storage.StorageGoodResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageUpdateRequestDto;
 import ru.rsatu.cursach.entity.Storage;
 import ru.rsatu.cursach.mapper.StorageMapper;
 import ru.rsatu.cursach.service.StorageService;
+
+import java.util.List;
 
 @ApplicationScoped
 public class StorageControllerService {
@@ -23,6 +26,12 @@ public class StorageControllerService {
     public StorageResponseDto getStorageInfo(Long id) {
         Storage storage = storageService.getStorage(id);
         return storageMapper.mapToResponse(storage);
+    }
+
+    @Transactional
+    public List<StorageGoodResponseDto> getStorageGoodList(Long id) {
+        Storage storage = storageService.getStorage(id);
+        return storageMapper.mapToStorageGoodResponse(storage.getStorageGoodList());
     }
 
     @Transactional

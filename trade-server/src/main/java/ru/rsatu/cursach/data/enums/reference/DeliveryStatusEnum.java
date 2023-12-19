@@ -2,6 +2,8 @@ package ru.rsatu.cursach.data.enums.reference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
+import ru.rsatu.cursach.entity.reference.DeliveryStatus;
 
 @Getter
 @AllArgsConstructor
@@ -16,7 +18,12 @@ public enum DeliveryStatusEnum {
 
     ;
 
-
     private String code;
     private String name;
+
+    public static boolean equals(DeliveryStatusEnum statusEnum, DeliveryStatus deliveryStatus) {
+        if (deliveryStatus == null || statusEnum == null)
+            return false;
+        return StringUtils.equals(statusEnum.getCode(), deliveryStatus.getCode());
+    }
 }

@@ -13,9 +13,12 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import ru.rsatu.cursach.data.dto.storage.StorageCreateRequestDto;
+import ru.rsatu.cursach.data.dto.storage.StorageGoodResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageUpdateRequestDto;
 import ru.rsatu.cursach.service.controller.StorageControllerService;
+
+import java.util.List;
 
 @Path("/storage")
 public class StorageController {
@@ -38,6 +41,13 @@ public class StorageController {
     public Response getStorageInfo(@PathParam("id") Long id) {
         StorageResponseDto responseDto = storageControllerService.getStorageInfo(id);
         return Response.ok(responseDto).build();
+    }
+
+    @GET
+    @Path("/{id}/goods/list")
+    public Response getStorageGoodList(@PathParam("id") Long id) {
+        List<StorageGoodResponseDto> responseDtoList = storageControllerService.getStorageGoodList(id);
+        return Response.ok(responseDtoList).build();
     }
 
     @PUT

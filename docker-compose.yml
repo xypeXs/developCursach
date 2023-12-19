@@ -25,7 +25,7 @@ services:
       - ZOO_CLIENT_USER=zookeeper
       - ZOO_CLIENT_PASSWORD=zookeeper_password
     volumes:
-      - ./infrastructure/zookeeper:/bitnami/zookeeper
+      - ./infrastructure/zookeeper:/bitnami
     hostname: zookeeper
     ports:
       - "2181:2181"
@@ -46,7 +46,7 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9002
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
     volumes:
-      - ./infrastructure/kafka_data:/bitnami/kafka
+      - ./infrastructure/kafka_data:/bitnami
     hostname: kafka
     ports:
       - "9002:9002"

@@ -19,4 +19,11 @@ public class StorageGood {
     private StorageGoodPK storageGoodId;
 
     private Long quantity;
+
+    public static StorageGood empty(StorageGoodPK storageGoodPK) {
+        StorageGood storageGood = new StorageGood();
+        storageGood.setStorageGoodId(storageGoodPK);
+        storageGood.setQuantity(0L);
+        return storageGood;
+    }
 }

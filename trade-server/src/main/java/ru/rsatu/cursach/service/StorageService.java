@@ -3,9 +3,13 @@ package ru.rsatu.cursach.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import ru.rsatu.cursach.entity.Delivery;
 import ru.rsatu.cursach.entity.Good;
 import ru.rsatu.cursach.entity.Storage;
+import ru.rsatu.cursach.entity.StorageGood;
+import ru.rsatu.cursach.entity.StorageGoodPK;
 import ru.rsatu.cursach.mapper.StorageMapper;
+import ru.rsatu.cursach.repository.StorageGoodRepository;
 import ru.rsatu.cursach.repository.StorageRepository;
 
 import java.math.BigDecimal;
@@ -20,6 +24,9 @@ public class StorageService {
 
     @Inject
     StorageRepository storageRepository;
+
+    @Inject
+    StorageGoodRepository storageGoodRepository;
 
     @Inject
     StorageMapper storageMapper;
@@ -48,6 +55,20 @@ public class StorageService {
         Storage storage = storageRepository.findById(id);
         storage.setIsActive(false);
         storageRepository.persist(storage);
+    }
+
+    @Transactional(Transactional.TxType.REQUIRED)
+    public void acceptDelivery(Delivery delivery) {
+        StorageGood storageGood = getStorageGoodOtCreateEmpty(delivery.getStorage(), delivery.getGood());
+        Long quantity = storageGood.getQuantity();
+        storageGood.setQuantity(quantity + delivery.getQuantity());
+        storageGoodRepository.persist(storageGood);
+    }
+
+    private StorageGood getStorageGoodOtCreateEmpty(Storage storage, Good good) {
+        StorageGoodPK storageGoodPK = new StorageGoodPK(storage, good);
+        return Optional.ofNullable(storageGoodRepository.findById(storageGoodPK))
+                .orElse(StorageGood.empty(storageGoodPK));
     }
 
     public BigDecimal computeVolumeUsed(Storage storage) {
