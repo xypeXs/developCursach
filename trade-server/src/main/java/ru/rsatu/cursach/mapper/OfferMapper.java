@@ -31,7 +31,6 @@ public abstract class OfferMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", expression = "java(supplierOfferPK)")
-    @Mapping(target = "rating", expression = "java(BigDecimal.ZERO)")
     @Mapping(target = "isActive", expression = "java(true)")
     public abstract SupplierOffer mapToSupplierOffer(SupplierOfferPK supplierOfferPK);
 
@@ -44,13 +43,11 @@ public abstract class OfferMapper {
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "supplierInfo", source = "id.supplier", qualifiedByName = "mapToSupplierDto")
     @Mapping(target = "goodInfo", source = "id.good", qualifiedByName = "mapToGoodDto")
-    @Mapping(target = "rating", source = "rating")
     public abstract SupplierOfferResponseDto mapToOfferFullResponse(SupplierOffer supplierOffer);
 
     @Named("mapToSupplierOfferResponse")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "goodInfo", source = "id.good", qualifiedByName = "mapToGoodDto")
-    @Mapping(target = "rating", source = "rating")
     public abstract SupplierOfferResponseDto mapToSupplierOfferResponse(SupplierOffer supplierOffer);
 
     @IterableMapping(qualifiedByName = "mapToSupplierOfferResponse")
@@ -59,7 +56,6 @@ public abstract class OfferMapper {
     @Named("mapToGoodOfferResponse")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "supplierInfo", source = "id.supplier", qualifiedByName = "mapToSupplierDto")
-    @Mapping(target = "rating", source = "rating")
     public abstract SupplierOfferResponseDto mapToGoodOfferResponse(SupplierOffer supplierOffer);
 
     @IterableMapping(qualifiedByName = "mapToGoodOfferResponse")

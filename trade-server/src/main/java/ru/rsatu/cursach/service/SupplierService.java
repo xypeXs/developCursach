@@ -24,10 +24,6 @@ public class SupplierService {
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void updateRating(Supplier supplier) {
-    }
-
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void createSupplier(Supplier supplier) {
         supplierRepository.persist(supplier);
     }

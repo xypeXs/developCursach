@@ -21,7 +21,6 @@
                              referencedTableName="GOODS"
                              referencedColumnNames="GOOD_ID"/>
             </column>
-            <column name="RATING" type="NUMERIC(1)" defaultValue="0" remarks="Рейтинг поставщика"/>
         </createTable>
     </changeSet>
 

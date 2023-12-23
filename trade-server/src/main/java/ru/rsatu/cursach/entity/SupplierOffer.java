@@ -22,7 +22,4 @@ public class SupplierOffer extends BaseHistoryEntity {
     @EqualsAndHashCode.Include
     private SupplierOfferPK id;
 
-    @Column(name = "RATING")
-    private BigDecimal rating;
-
 }

@@ -1,6 +1,5 @@
 package ru.rsatu.cursach.data.dto.delivery;
 
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

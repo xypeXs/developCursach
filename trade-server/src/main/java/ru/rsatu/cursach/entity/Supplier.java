@@ -40,9 +40,6 @@ public class Supplier extends BaseHistoryEntity {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    @Column(name = "rating")
-    private BigDecimal rating;
-
     @OneToMany(mappedBy = "id.supplier", fetch = FetchType.LAZY, cascade = {})
     private List<SupplierOffer> offerList;
 

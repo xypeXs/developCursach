@@ -44,7 +44,6 @@ public abstract class DeliveryMapper {
     @Mapping(target = "good", expression = "java(goodService.getGood(createRequestDto.getGoodId()))")
     @Mapping(target = "storage", expression = "java(storageService.getStorage(createRequestDto.getStorageId()))")
     @Mapping(target = "supplier", expression = "java(supplierService.getSupplier(createRequestDto.getSupplierId()))")
-    @Mapping(target = "rating", expression = "java(0)")
     @Mapping(target = "status", expression = "java(referenceService.getDeliveryStatus(DeliveryStatusEnum.PENDING))")
     @Mapping(target = "uuid", expression = "java(UUID.randomUUID().toString())")
     @Mapping(target = "quantity", source = "quantity")

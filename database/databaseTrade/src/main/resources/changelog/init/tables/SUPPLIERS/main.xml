@@ -17,7 +17,6 @@
             </column>
             <column name="LEGAL_ADDRESS" type="VARCHAR(1000)" remarks="Юридический адрес"/>
             <column name="NAME" type="VARCHAR(1000)" remarks="Полное наименование поставщика"/>
-            <column name="RATING" type="NUMERIC(1)" defaultValue="0" remarks="Рейтинг поставщика"/>
             <column name="REGISTRATION_DATE" type="DATE" remarks="Дата регистрации поставщика"/>
         </createTable>
     </changeSet>

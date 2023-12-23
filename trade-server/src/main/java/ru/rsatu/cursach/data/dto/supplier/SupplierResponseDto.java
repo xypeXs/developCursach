@@ -8,6 +8,5 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class SupplierResponseDto extends BaseSupplierResponseDto {
-    private BigDecimal rating;
 }
 

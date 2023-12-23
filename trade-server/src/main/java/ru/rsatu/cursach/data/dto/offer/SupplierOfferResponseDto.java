@@ -10,6 +10,5 @@ import java.math.BigDecimal;
 public class SupplierOfferResponseDto {
     private GoodResponseDto goodInfo;
     private SupplierResponseDto supplierInfo;
-    private BigDecimal rating;
 }
 

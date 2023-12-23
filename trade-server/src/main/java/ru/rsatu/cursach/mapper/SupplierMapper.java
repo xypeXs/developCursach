@@ -23,7 +23,6 @@ public abstract class SupplierMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "legalAddress", source = "legalAddress")
     @Mapping(target = "registrationDate", source = "registrationDate")
-    @Mapping(target = "rating", expression = "java(BigDecimal.ZERO)")
     @Mapping(target = "isActive", expression = "java(true)")
     public abstract Supplier mapToSupplier(SupplierCreateRequestDto createRequestDto);
 
@@ -33,7 +32,6 @@ public abstract class SupplierMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "legalAddress", source = "legalAddress")
     @Mapping(target = "registrationDate", source = "registrationDate")
-    @Mapping(target = "rating", source = "rating")
     @Mapping(target = "isActive", source = "isActive")
     public abstract SupplierResponseDto mapToResponse(Supplier supplier);
 

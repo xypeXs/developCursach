@@ -46,9 +46,6 @@ public class Delivery {
     @Column(name = "DELIVERY_DATE")
     private LocalDate deliveryDate;
 
-    @Column(name = "RATING")
-    private Integer rating;
-
     @Column(name = "QUANTITY")
     private Long quantity;
 
