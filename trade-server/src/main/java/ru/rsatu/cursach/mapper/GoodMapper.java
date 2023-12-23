@@ -53,5 +53,6 @@ public abstract class GoodMapper {
     @Mapping(target = "width", source = "width")
     @Mapping(target = "length", source = "length")
     @Mapping(target = "weight", source = "weight")
+    @Mapping(target = "isActive", source = "isActive")
     public abstract GoodResponseDto mapToResponse(Good good);
 }

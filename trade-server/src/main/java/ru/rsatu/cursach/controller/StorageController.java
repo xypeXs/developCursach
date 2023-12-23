@@ -1,6 +1,7 @@
 package ru.rsatu.cursach.controller;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -30,7 +31,7 @@ public class StorageController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createStorage(@RequestBody StorageCreateRequestDto createRequestDto) {
+    public Response createStorage(@RequestBody @Valid StorageCreateRequestDto createRequestDto) {
         StorageResponseDto responseDto = storageControllerService.createStorage(createRequestDto);
         return Response.ok(responseDto).build();
     }
@@ -54,7 +55,7 @@ public class StorageController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateStorageInfo(@PathParam("id") Long id, @RequestBody StorageUpdateRequestDto updateRequestDto) {
+    public Response updateStorageInfo(@PathParam("id") Long id, @RequestBody @Valid StorageUpdateRequestDto updateRequestDto) {
         StorageResponseDto responseDto = storageControllerService.updateStorage(id, updateRequestDto);
         return Response.ok(responseDto).build();
     }

@@ -16,4 +16,6 @@ public class StorageResponseDto {
     private BigDecimal volumeUsed;
     private BigDecimal weightUsed;
 
+    private Boolean isActive;
+
 }

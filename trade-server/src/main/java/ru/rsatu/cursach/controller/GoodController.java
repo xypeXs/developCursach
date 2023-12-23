@@ -1,6 +1,7 @@
 package ru.rsatu.cursach.controller;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -31,7 +32,7 @@ public class GoodController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createGood(@RequestBody GoodCreateRequestDto createRequestDto) {
+    public Response createGood(@RequestBody @Valid GoodCreateRequestDto createRequestDto) {
         GoodResponseDto responseDto = goodControllerService.createGood(createRequestDto);
         return Response.ok(responseDto).build();
     }
@@ -48,7 +49,7 @@ public class GoodController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateGoodInfo(@PathParam("id") Long id, @RequestBody GoodUpdateRequestDto updateRequestDto) {
+    public Response updateGoodInfo(@PathParam("id") Long id, @RequestBody @Valid GoodUpdateRequestDto updateRequestDto) {
         GoodResponseDto responseDto = goodControllerService.updateGood(id, updateRequestDto);
         return Response.ok(responseDto).build();
     }

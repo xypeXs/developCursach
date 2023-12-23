@@ -54,6 +54,7 @@ public abstract class StorageMapper {
     @Mapping(target = "weightCapacity", source = "weightCapacity")
     @Mapping(target = "volumeUsed", expression = "java(storageService.computeVolumeUsed(storage))")
     @Mapping(target = "weightUsed", expression = "java(storageService.computeWeightUsed(storage))")
+    @Mapping(target = "isActive", source = "isActive")
     public abstract StorageResponseDto mapToResponse(Storage storage);
 
     @Named("mapToStorageGoodDto")

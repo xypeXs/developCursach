@@ -34,6 +34,7 @@ public abstract class SupplierMapper {
     @Mapping(target = "legalAddress", source = "legalAddress")
     @Mapping(target = "registrationDate", source = "registrationDate")
     @Mapping(target = "rating", source = "rating")
+    @Mapping(target = "isActive", source = "isActive")
     public abstract SupplierResponseDto mapToResponse(Supplier supplier);
 
     @BeanMapping(ignoreByDefault = true)

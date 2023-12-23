@@ -1,6 +1,7 @@
 package ru.rsatu.cursach.controller;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -27,7 +28,7 @@ public class SupplierController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createSupplier(@RequestBody SupplierCreateRequestDto createRequestDto) {
+    public Response createSupplier(@RequestBody @Valid SupplierCreateRequestDto createRequestDto) {
         SupplierResponseDto responseDto = supplierControllerService.createSupplier(createRequestDto);
         return Response.ok(responseDto).build();
     }
@@ -44,7 +45,7 @@ public class SupplierController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateSupplier(@PathParam("id") Long id, @RequestBody SupplierUpdateRequestDto updateRequestDto) {
+    public Response updateSupplier(@PathParam("id") Long id, @RequestBody @Valid SupplierUpdateRequestDto updateRequestDto) {
         SupplierResponseDto responseDto = supplierControllerService.updateSupplier(id, updateRequestDto);
         return Response.ok(responseDto).build();
     }

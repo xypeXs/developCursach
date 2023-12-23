@@ -10,4 +10,5 @@ public class BaseSupplierResponseDto {
     private String legalAddress;
     private String name;
     private LocalDate registrationDate;
+    private Boolean isActive;
 }

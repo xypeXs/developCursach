@@ -14,5 +14,6 @@ public class GoodResponseDto {
     private BigDecimal width;
     private BigDecimal length;
     private BigDecimal weight;
+    private Boolean isActive;
 
 }
