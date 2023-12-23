@@ -11,6 +11,9 @@
             </not>
         </preConditions>
         <createTable tableName="SUPPLIER_OFFERS">
+            <column name="SUPPLIER_OFFER_ID" type="NUMERIC(19)" remarks="Идентификатор предложения (первичный ключ)">
+                <constraints primaryKey="true" primaryKeyName="PK_SUPPLIER_OFFER_ID"/>
+            </column>
             <column name="SUPPLIER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставщике (внешний ключ)">
                 <constraints foreignKeyName="FK_SUPPLIER_OFFERS_SUPPLIER_ID"
                              referencedTableName="SUPPLIERS"
@@ -21,6 +24,7 @@
                              referencedTableName="GOODS"
                              referencedColumnNames="GOOD_ID"/>
             </column>
+            <column name="PRICE" type="NUMERIC(19, 2)" remarks="Цена на товар"/>
         </createTable>
     </changeSet>
 
@@ -38,11 +42,14 @@
         </addColumn>
     </changeSet>
 
-    <changeSet id="add-unique-constraint-to-SUPPLIER_OFFERS" author="gananyev">
-        <preConditions>
+    <changeSet id="add-sequence-generator-SUPPLIER_OFFER_ID" author="gananyev">
+        <preConditions onFail="MARK_RAN">
             <tableExists tableName="SUPPLIER_OFFERS"/>
         </preConditions>
-        <addUniqueConstraint tableName="SUPPLIER_OFFERS" columnNames="SUPPLIER_ID, GOOD_ID"/>
+        <createSequence sequenceName="SUPPLIER_OFFER_ID_SEQ"
+                        startValue="1000"
+                        incrementBy="1"
+                        maxValue="9223372036854775807"/>
     </changeSet>
 
 </databaseChangeLog>

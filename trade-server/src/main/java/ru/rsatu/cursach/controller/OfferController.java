@@ -1,6 +1,7 @@
 package ru.rsatu.cursach.controller;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -9,6 +10,8 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
+import ru.rsatu.cursach.data.dto.offer.SupplierOfferCreateRequestDto;
 import ru.rsatu.cursach.data.dto.offer.SupplierOfferResponseDto;
 import ru.rsatu.cursach.service.controller.OfferControllerService;
 
@@ -23,8 +26,9 @@ public class OfferController {
     @POST
     @Path("/supplier/{supplierId}/good/{goodId}/create")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createOffer(@PathParam("supplierId") Long supplierId, @PathParam("goodId") Long goodId) {
-        SupplierOfferResponseDto responseDto = offerControllerService.createOffer(supplierId, goodId);
+    public Response createOffer(@PathParam("supplierId") Long supplierId, @PathParam("goodId") Long goodId,
+                                @RequestBody @Valid SupplierOfferCreateRequestDto requestDto) {
+        SupplierOfferResponseDto responseDto = offerControllerService.createOffer(supplierId, goodId, requestDto);
         return Response.ok(responseDto).build();
     }
 
@@ -45,10 +49,10 @@ public class OfferController {
     }
 
     @DELETE
-    @Path("/supplier/{supplierId}/good/{goodId}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteOffer(@PathParam("supplierId") Long supplierId, @PathParam("goodId") Long goodId) {
-        offerControllerService.deleteOffer(supplierId, goodId);
+    public Response deleteOffer(@PathParam("id") Long offerId) {
+        offerControllerService.deleteOffer(offerId);
         return Response.ok().build();
     }
 }

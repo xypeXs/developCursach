@@ -8,7 +8,9 @@ import java.math.BigDecimal;
 
 @Data
 public class SupplierOfferResponseDto {
+    private Long offerId;
     private GoodResponseDto goodInfo;
     private SupplierResponseDto supplierInfo;
+    private BigDecimal price;
 }
 

@@ -9,7 +9,6 @@ public class GoodResponseDto {
 
     private Long id;
     private String name;
-    private BigDecimal price;
     private BigDecimal height;
     private BigDecimal width;
     private BigDecimal length;

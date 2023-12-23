@@ -34,11 +34,8 @@ public class Delivery {
     @Column(name = "UUID")
     private String uuid;
 
-    @Column(name = "SUPPLIER_ID")
-    private Long supplierId;
-
-    @Column(name = "GOOD_ID")
-    private Long goodId;
+    @Column(name = "SUPPLIER_OFFER_ID")
+    private Long supplierOfferId;
 
     @Column(name = "STORAGE_ID")
     private Long storageId;

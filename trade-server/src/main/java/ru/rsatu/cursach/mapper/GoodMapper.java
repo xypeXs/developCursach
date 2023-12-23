@@ -18,7 +18,6 @@ public abstract class GoodMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "price", source = "price")
     @Mapping(target = "height", source = "height")
     @Mapping(target = "width", source = "width")
     @Mapping(target = "length", source = "length")
@@ -28,7 +27,6 @@ public abstract class GoodMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "price", source = "price")
     @Mapping(target = "height", source = "height")
     @Mapping(target = "width", source = "width")
     @Mapping(target = "length", source = "length")
@@ -37,7 +35,6 @@ public abstract class GoodMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "price", source = "price")
     @Mapping(target = "height", source = "height")
     @Mapping(target = "width", source = "width")
     @Mapping(target = "length", source = "length")
@@ -48,7 +45,6 @@ public abstract class GoodMapper {
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "goodId")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "price", source = "price")
     @Mapping(target = "height", source = "height")
     @Mapping(target = "width", source = "width")
     @Mapping(target = "length", source = "length")

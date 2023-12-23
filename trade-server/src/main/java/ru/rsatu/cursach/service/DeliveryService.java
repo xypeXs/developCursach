@@ -4,7 +4,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import ru.rsatu.cursach.data.enums.reference.DeliveryStatusEnum;
+import ru.rsatu.cursach.data.validation.service.Validation;
 import ru.rsatu.cursach.entity.Delivery;
+import ru.rsatu.cursach.exception.DeliveryException;
 import ru.rsatu.cursach.mapper.DeliveryMapper;
 import ru.rsatu.cursach.repository.DeliveryRepository;
 import ru.rsatu.cursach.service.kafka.producer.DeliveryRequestProducer;
@@ -25,8 +27,10 @@ public class DeliveryService {
     DeliveryMapper deliveryMapper;
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void saveDeliveryRequest(Delivery delivery) {
+    public void saveDelivery(Delivery delivery) {
         // TODO validate storage volume and weight and Offer existence
+        if (delivery.getSupplierOffer() == null || !delivery.getSupplierOffer().getIsActive())
+            throw new DeliveryException(Validation.Message.DELIVERY_OFFER_PROHIBITED);
         deliveryRepository.persist(delivery);
     }
 

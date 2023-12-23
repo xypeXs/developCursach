@@ -14,11 +14,8 @@ public class DeliveryCreateRequestDto {
     @NotNull(message = Validation.Message.STORAGE_ID_NULL)
     private Long storageId;
 
-    @NotNull(message = Validation.Message.GOOD_ID_NULL)
-    private Long goodId;
-
-    @NotNull(message = Validation.Message.SUPPLIER_ID_NULL)
-    private Long supplierId;
+    @NotNull(message = Validation.Message.SUPPLIER_OFFER_ID_NULL)
+    private Long supplierOfferId;
 
     @NotNull(message = Validation.Message.DELIVERY_DATE_NULL)
     @FutureOrPresent(message = Validation.Message.DELIVERY_DATE_NOT_VALID)

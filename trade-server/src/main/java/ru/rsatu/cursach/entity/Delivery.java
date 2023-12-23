@@ -34,12 +34,8 @@ public class Delivery {
     private String uuid;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
-    @JoinColumn(name = "SUPPLIER_ID")
-    private Supplier supplier;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
-    @JoinColumn(name = "GOOD_ID")
-    private Good good;
+    @JoinColumn(name = "SUPPLIER_OFFER_ID")
+    private SupplierOffer supplierOffer;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "STORAGE_ID")

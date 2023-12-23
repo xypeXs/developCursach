@@ -4,10 +4,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.apache.commons.lang3.BooleanUtils;
+import ru.rsatu.cursach.data.validation.service.Validation;
 import ru.rsatu.cursach.entity.Good;
 import ru.rsatu.cursach.entity.Supplier;
 import ru.rsatu.cursach.entity.SupplierOffer;
-import ru.rsatu.cursach.entity.SupplierOfferPK;
+import ru.rsatu.cursach.exception.SupplierOfferException;
 import ru.rsatu.cursach.repository.SupplierOfferRepository;
 
 import java.util.ArrayList;
@@ -29,12 +30,20 @@ public class OfferService {
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void createSupplierGoodOffer(SupplierOffer supplierOffer) {
+        Long sameActiveOfferCount = supplierOfferRepository.getSameOfferActiveCount(supplierOffer);
+        if (sameActiveOfferCount > 0)
+            throw new SupplierOfferException(Validation.Message.OFFER_EXISTS);
         supplierOfferRepository.persist(supplierOffer);
     }
 
+    @Transactional
+    public SupplierOffer getSupplierOffer(Long id) {
+        return supplierOfferRepository.findById(id);
+    }
+
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void deleteSupplierGoodOffer(SupplierOfferPK supplierOfferPK) {
-        SupplierOffer supplierOffer = supplierOfferRepository.findById(supplierOfferPK);
+    public void deleteSupplierGoodOffer(Long id) {
+        SupplierOffer supplierOffer = supplierOfferRepository.findById(id);
         supplierOffer.setIsActive(false);
         supplierOfferRepository.persist(supplierOffer);
     }

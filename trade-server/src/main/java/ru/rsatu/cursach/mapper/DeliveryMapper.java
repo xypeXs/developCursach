@@ -12,10 +12,9 @@ import ru.rsatu.cursach.data.enums.reference.DeliveryStatusEnum;
 import ru.rsatu.cursach.entity.Delivery;
 import ru.rsatu.cursach.model.kafka.DeliveryRequestRecord;
 import ru.rsatu.cursach.model.kafka.DeliveryResponseRecord;
-import ru.rsatu.cursach.service.GoodService;
+import ru.rsatu.cursach.service.OfferService;
 import ru.rsatu.cursach.service.ReferenceService;
 import ru.rsatu.cursach.service.StorageService;
-import ru.rsatu.cursach.service.SupplierService;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -28,22 +27,18 @@ import java.util.UUID;
 public abstract class DeliveryMapper {
 
     @Inject
-    SupplierService supplierService;
-
-    @Inject
     StorageService storageService;
-
-    @Inject
-    GoodService goodService;
 
     @Inject
     ReferenceService referenceService;
 
+    @Inject
+    OfferService offerService;
+
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "deliveryDate", source = "deliveryDate")
-    @Mapping(target = "good", expression = "java(goodService.getGood(createRequestDto.getGoodId()))")
+    @Mapping(target = "supplierOffer", expression = "java(offerService.getSupplierOffer(createRequestDto.getSupplierOfferId()))")
     @Mapping(target = "storage", expression = "java(storageService.getStorage(createRequestDto.getStorageId()))")
-    @Mapping(target = "supplier", expression = "java(supplierService.getSupplier(createRequestDto.getSupplierId()))")
     @Mapping(target = "status", expression = "java(referenceService.getDeliveryStatus(DeliveryStatusEnum.PENDING))")
     @Mapping(target = "uuid", expression = "java(UUID.randomUUID().toString())")
     @Mapping(target = "quantity", source = "quantity")
@@ -51,20 +46,20 @@ public abstract class DeliveryMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "uuid", source = "uuid")
-    @Mapping(target = "goodInfo", source = "good", qualifiedByName = "mapToGoodDto")
+    @Mapping(target = "goodInfo", source = "supplierOffer.good", qualifiedByName = "mapToGoodDto")
     @Mapping(target = "storageInfo", source = "storage", qualifiedByName = "mapToStorageDto")
-    @Mapping(target = "supplierInfo", source = "supplier", qualifiedByName = "mapToSupplierDto")
+    @Mapping(target = "supplierInfo", source = "supplierOffer.supplier", qualifiedByName = "mapToSupplierDto")
     @Mapping(target = "deliveryDate", source = "deliveryDate")
     @Mapping(target = "deliveryStatus", source = "status", qualifiedByName = "referenceBase")
     @Mapping(target = "quantity", source = "quantity")
+    @Mapping(target = "price", source = "supplierOffer.price")
     public abstract DeliveryResponseDto mapToResponse(Delivery delivery);
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "deliveryUUID", source = "uuid")
     @Mapping(target = "deliveryDate", source = "deliveryDate")
     @Mapping(target = "storageId", source = "storage.storageId")
-    @Mapping(target = "goodId", source = "good.goodId")
-    @Mapping(target = "supplierId", source = "supplier.id")
+    @Mapping(target = "supplierOfferId", source = "supplierOffer.id")
     @Mapping(target = "quantity", source = "quantity")
     public abstract DeliveryRequestRecord mapToDeliveryRecord(Delivery delivery);
 

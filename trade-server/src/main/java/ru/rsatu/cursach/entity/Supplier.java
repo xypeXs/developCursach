@@ -40,7 +40,7 @@ public class Supplier extends BaseHistoryEntity {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    @OneToMany(mappedBy = "id.supplier", fetch = FetchType.LAZY, cascade = {})
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY, cascade = {})
     private List<SupplierOffer> offerList;
 
 }

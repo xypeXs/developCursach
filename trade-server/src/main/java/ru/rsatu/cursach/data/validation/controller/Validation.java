@@ -11,20 +11,19 @@ public class Validation {
 
     public static class Message {
         public static final String STORAGE_ID_NULL = "Не заполнен идентификатор склада";
-        public static final String GOOD_ID_NULL = "Не заполнен идентификатор товара";
-        public static final String SUPPLIER_ID_NULL = "Не заполнен идентификатор поставщика";
+        public static final String SUPPLIER_OFFER_ID_NULL = "Не заполнен идентификатор предложения поставщика";
         public static final String DELIVERY_DATE_NULL = "Не заполнена дата поставки";
         public static final String DELIVERY_DATE_NOT_VALID = "Недопустимая дата поставки";
         public static final String GOOD_QUANTITY_NULL = "Не заполнено количество товара";
         public static final String GOOD_QUANTITY_NOT_VALID = "Недопустимое количество товара";
         public static final String GOOD_NAME_NULL = "Не заполнено наименование товара";
-        public static final String GOOD_PRICE_NULL = "Не заполнена цена товара";
+        public static final String OFFER_PRICE_NULL = "Не заполнена цена товара в предложении";
         public static final String GOOD_HEIGHT_NULL = "Не заполнена высота товара";
         public static final String GOOD_WIDTH_NULL = "Не заполнена ширина товара";
         public static final String GOOD_LENGTH_NULL = "Не заполнена длина товара";
         public static final String GOOD_WEIGHT_NULL = "Не заполнена масса товара";
         public static final String GOOD_NAME_NOT_VALID = "Недопустимое наименование товара";
-        public static final String GOOD_PRICE_NOT_VALID = "Недопустимая цена товара";
+        public static final String OFFER_PRICE_NOT_VALID = "Недопустимая цена товара в предложении";
         public static final String GOOD_HEIGHT_NOT_VALID = "Недопустимая высота товара";
         public static final String GOOD_WIDTH_NOT_VALID = "Недопустимая ширина товара";
         public static final String GOOD_LENGTH_NOT_VALID = "Недопустимая длина товара";

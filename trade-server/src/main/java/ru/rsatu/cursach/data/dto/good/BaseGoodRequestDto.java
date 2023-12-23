@@ -16,10 +16,6 @@ public class BaseGoodRequestDto {
             message = Validation.Message.GOOD_NAME_NOT_VALID)
     private String name;
 
-    @NotNull(message = Validation.Message.GOOD_PRICE_NULL)
-    @Positive(message = Validation.Message.GOOD_PRICE_NOT_VALID)
-    private BigDecimal price;
-
     @NotNull(message = Validation.Message.GOOD_HEIGHT_NULL)
     @Positive(message = Validation.Message.GOOD_HEIGHT_NOT_VALID)
     private BigDecimal height;

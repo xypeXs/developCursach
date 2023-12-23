@@ -59,7 +59,7 @@ public class StorageService {
 
     @Transactional(Transactional.TxType.REQUIRED)
     public void acceptDelivery(Delivery delivery) {
-        StorageGood storageGood = getStorageGoodOtCreateEmpty(delivery.getStorage(), delivery.getGood());
+        StorageGood storageGood = getStorageGoodOtCreateEmpty(delivery.getStorage(), delivery.getSupplierOffer().getGood());
         Long quantity = storageGood.getQuantity();
         storageGood.setQuantity(quantity + delivery.getQuantity());
         storageGoodRepository.persist(storageGood);

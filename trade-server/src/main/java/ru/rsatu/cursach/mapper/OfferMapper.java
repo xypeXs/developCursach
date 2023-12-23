@@ -7,9 +7,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import ru.rsatu.cursach.config.MapstructConfig;
+import ru.rsatu.cursach.data.dto.offer.SupplierOfferCreateRequestDto;
 import ru.rsatu.cursach.data.dto.offer.SupplierOfferResponseDto;
 import ru.rsatu.cursach.entity.SupplierOffer;
-import ru.rsatu.cursach.entity.SupplierOfferPK;
 import ru.rsatu.cursach.service.GoodService;
 import ru.rsatu.cursach.service.SupplierService;
 
@@ -30,24 +30,25 @@ public abstract class OfferMapper {
     SupplierService supplierService;
 
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", expression = "java(supplierOfferPK)")
-    @Mapping(target = "isActive", expression = "java(true)")
-    public abstract SupplierOffer mapToSupplierOffer(SupplierOfferPK supplierOfferPK);
-
-    @Named("mapToSupplierOfferPK")
-    @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "supplier", expression = "java(supplierService.getSupplier(supplierId))")
     @Mapping(target = "good", expression = "java(goodService.getGood(goodId))")
-    public abstract SupplierOfferPK mapToSupplierOfferPK(Long supplierId, Long goodId);
+    @Mapping(target = "price", source = "createRequestDto.price")
+    @Mapping(target = "isActive", expression = "java(true)")
+    public abstract SupplierOffer mapToSupplierOffer(Long supplierId, Long goodId,
+                                                     SupplierOfferCreateRequestDto createRequestDto);
 
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "supplierInfo", source = "id.supplier", qualifiedByName = "mapToSupplierDto")
-    @Mapping(target = "goodInfo", source = "id.good", qualifiedByName = "mapToGoodDto")
+    @Mapping(target = "offerId", source = "id")
+    @Mapping(target = "supplierInfo", source = "supplier", qualifiedByName = "mapToSupplierDto")
+    @Mapping(target = "goodInfo", source = "good", qualifiedByName = "mapToGoodDto")
+    @Mapping(target = "price", source = "price")
     public abstract SupplierOfferResponseDto mapToOfferFullResponse(SupplierOffer supplierOffer);
 
     @Named("mapToSupplierOfferResponse")
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "goodInfo", source = "id.good", qualifiedByName = "mapToGoodDto")
+    @Mapping(target = "offerId", source = "id")
+    @Mapping(target = "goodInfo", source = "good", qualifiedByName = "mapToGoodDto")
+    @Mapping(target = "price", source = "price")
     public abstract SupplierOfferResponseDto mapToSupplierOfferResponse(SupplierOffer supplierOffer);
 
     @IterableMapping(qualifiedByName = "mapToSupplierOfferResponse")
@@ -55,7 +56,9 @@ public abstract class OfferMapper {
 
     @Named("mapToGoodOfferResponse")
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "supplierInfo", source = "id.supplier", qualifiedByName = "mapToSupplierDto")
+    @Mapping(target = "offerId", source = "id")
+    @Mapping(target = "supplierInfo", source = "supplier", qualifiedByName = "mapToSupplierDto")
+    @Mapping(target = "price", source = "price")
     public abstract SupplierOfferResponseDto mapToGoodOfferResponse(SupplierOffer supplierOffer);
 
     @IterableMapping(qualifiedByName = "mapToGoodOfferResponse")

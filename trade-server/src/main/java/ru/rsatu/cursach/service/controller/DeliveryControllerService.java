@@ -21,7 +21,7 @@ public class DeliveryControllerService {
     @Transactional
     public DeliveryResponseDto createDeliveryRequest(DeliveryCreateRequestDto createRequestDto) {
         Delivery delivery = deliveryMapper.mapToDelivery(createRequestDto);
-        deliveryService.saveDeliveryRequest(delivery);
+        deliveryService.saveDelivery(delivery);
         deliveryService.sendDeliveryRequest(delivery);
         return deliveryMapper.mapToResponse(delivery);
     }

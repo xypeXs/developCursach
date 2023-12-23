@@ -12,8 +12,7 @@
         </preConditions>
         <createTable tableName="DELIVERIES">
             <column name="DELIVERY_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставке"/>
-            <column name="SUPPLIER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставщике"/>
-            <column name="GOOD_ID" type="NUMERIC(19)" remarks="Идентификатор записи о товаре (внешний ключ)"/>
+            <column name="SUPPLIER_OFFER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о предложении поставщика"/>
             <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор склада (внешний ключ)"/>
             <column name="DELIVERY_DATE" type="DATE" remarks="Плановая дата поставки"/>
             <column name="QUANTITY" type="NUMERIC(19)" remarks="Количество товаров в поставке"/>

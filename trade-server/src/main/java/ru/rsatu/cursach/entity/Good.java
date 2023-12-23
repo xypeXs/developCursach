@@ -33,9 +33,6 @@ public class Good extends BaseHistoryEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "price")
-    private BigDecimal price;
-
     @Column(name = "height")
     private BigDecimal height;
 
@@ -51,6 +48,6 @@ public class Good extends BaseHistoryEntity {
     @OneToMany(mappedBy = "storageGoodId.good", fetch = FetchType.LAZY, cascade = {})
     private List<StorageGood> storageGoodList;
 
-    @OneToMany(mappedBy = "id.good", fetch = FetchType.LAZY, cascade = {})
+    @OneToMany(mappedBy = "good", fetch = FetchType.LAZY, cascade = {})
     private List<SupplierOffer> offerList;
 }

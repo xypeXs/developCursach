@@ -15,15 +15,10 @@
                 <constraints primaryKey="true"
                              primaryKeyName="PK_DELIVERY_ID"/>
             </column>
-            <column name="SUPPLIER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставщике (внешний ключ)">
-                <constraints foreignKeyName="FK_DELIVERY_SUPPLIER_ID"
-                             referencedTableName="SUPPLIERS"
-                             referencedColumnNames="SUPPLIER_ID"/>
-            </column>
-            <column name="GOOD_ID" type="NUMERIC(19)" remarks="Идентификатор записи о товаре (внешний ключ)">
-                <constraints foreignKeyName="FK_DELIVERY_GOOD_ID"
-                             referencedTableName="GOODS"
-                             referencedColumnNames="GOOD_ID"/>
+            <column name="SUPPLIER_OFFER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о предложении поставщика (внешний ключ)">
+                <constraints foreignKeyName="FK_DELIVERY_SUPPLIER_OFFER_ID"
+                             referencedTableName="SUPPLIER_OFFERS"
+                             referencedColumnNames="SUPPLIER_OFFER_ID"/>
             </column>
             <column name="STORAGE_ID" type="NUMERIC(19)" remarks="Идентификатор склада (внешний ключ)">
                 <constraints foreignKeyName="FK_DELIVERY_STORAGE_ID"

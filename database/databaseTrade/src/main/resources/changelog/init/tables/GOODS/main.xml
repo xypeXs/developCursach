@@ -15,7 +15,6 @@
                 <constraints primaryKey="true" primaryKeyName="PK_GOOD_ID"/>
             </column>
             <column name="NAME" type="TEXT(100)" remarks="Наименование типа товара"/>
-            <column name="PRICE" type="NUMERIC(19, 2)" remarks="Цена на товар"/>
             <column name="HEIGHT" type="NUMBER(19, 2)" remarks="Объём одной единицы товара"/>
             <column name="WIDTH" type="NUMBER(19, 2)" remarks="Объём одной единицы товара"/>
             <column name="LENGTH" type="NUMBER(19, 2)" remarks="Объём одной единицы товара"/>

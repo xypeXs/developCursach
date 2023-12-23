@@ -21,9 +21,8 @@ public abstract class DeliveryMapper {
     ReferenceService referenceService;
 
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "supplierId", source = "supplierId")
+    @Mapping(target = "supplierOfferId", source = "supplierOfferId")
     @Mapping(target = "storageId", source = "storageId")
-    @Mapping(target = "goodId", source = "goodId")
     @Mapping(target = "deliveryDate", source = "deliveryDate")
     @Mapping(target = "uuid", source = "deliveryUUID")
     @Mapping(target = "status", expression = "java(referenceService.getDeliveryStatus(DeliveryStatusEnum.PENDING_SUPPLIER))")
