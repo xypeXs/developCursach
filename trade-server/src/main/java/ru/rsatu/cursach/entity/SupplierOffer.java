@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class SupplierOffer extends BaseHistoryEntity {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(generator = "SUPPLIER_OFFER_ID_SEQ")
+    @SequenceGenerator(name="SUPPLIER_OFFER_ID_SEQ", sequenceName="SUPPLIER_OFFER_ID_SEQ", allocationSize = 1)
     @Column(name = "SUPPLIER_OFFER_ID")
     private Long id;
 
