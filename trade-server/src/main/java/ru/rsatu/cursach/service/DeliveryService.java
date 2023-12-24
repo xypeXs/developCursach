@@ -11,6 +11,8 @@ import ru.rsatu.cursach.mapper.DeliveryMapper;
 import ru.rsatu.cursach.repository.DeliveryRepository;
 import ru.rsatu.cursach.service.kafka.producer.DeliveryRequestProducer;
 
+import java.util.Objects;
+
 @ApplicationScoped
 public class DeliveryService {
 
@@ -43,6 +45,8 @@ public class DeliveryService {
     public void processDeliveryResponse(Delivery responseSrcDelivery) {
         Delivery updDelivery = deliveryRepository.findByUUID(responseSrcDelivery.getUuid());
         // TODO validate base info not changed
+        if (Objects.equals(updDelivery.getStatus(), responseSrcDelivery.getStatus()))
+            return;
         deliveryMapper.updateDeliveryBySupplierResponse(responseSrcDelivery, updDelivery);
         processDelivery(updDelivery);
         deliveryRepository.persist(updDelivery);
