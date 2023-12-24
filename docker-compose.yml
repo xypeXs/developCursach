@@ -24,6 +24,7 @@ services:
       - ZOO_ENABLE_AUTH=yes
       - ZOO_CLIENT_USER=zookeeper
       - ZOO_CLIENT_PASSWORD=zookeeper_password
+      - ZOO_MAX_SESSION_TIMEOUT=30000
     volumes:
       - ./infrastructure/zookeeper:/bitnami
     hostname: zookeeper

@@ -2,6 +2,7 @@ package ru.rsatu.cursach.service;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import ru.rsatu.cursach.data.template.Statistics;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -15,7 +16,9 @@ public class StatisticsService {
         startTime = LocalDateTime.now();
     }
 
-    public long getApplicationActiveTime() {
-        return ChronoUnit.MILLIS.between(LocalDateTime.now(), startTime);
+    public Statistics getApplicationStatistics() {
+        Statistics statistics = new Statistics();
+        statistics.setRuntimeMillis(ChronoUnit.MILLIS.between(startTime, LocalDateTime.now()));
+        return statistics;
     }
 }

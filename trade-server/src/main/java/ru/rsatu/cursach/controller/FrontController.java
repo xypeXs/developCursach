@@ -6,24 +6,24 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import ru.rsatu.cursach.service.StatisticsService;
+import ru.rsatu.cursach.service.TemplateRendererService;
 
 @Path("/front")
 public class FrontController {
 
     @Inject
-    StatisticsService statisticsService;
+    TemplateRendererService templateRendererService;
 
     @GET
     @Path("/statistics")
     public Response getApplicationStatisticsHTMLPage() {
-
-        return createHTMLPageResponse()
+        String statisticsTemplate = templateRendererService.renderStatisticsHTML();
+        return createHTMLPageResponse(statisticsTemplate);
     }
 
     public Response createHTMLPageResponse(Object object) {
         return Response
-                .ok()
+                .ok(object)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_HTML)
                 .build();
     }
