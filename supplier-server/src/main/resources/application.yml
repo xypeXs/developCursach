@@ -1,0 +1,35 @@
+quarkus:
+  http:
+    root-path: /supplier-service
+    port: 9090
+  datasource:
+    jdbc:
+      url: jdbc:postgresql://postgres:5432/SUPPLIER
+    db-kind: postgresql
+    username: admin
+    password: admin
+  hibernate-orm:
+    database:
+      generation: none
+
+kafka:
+  bootstrap:
+    servers: kafka:9002
+
+mp:
+  messaging:
+    incoming:
+      delivery_request:
+        group.id: supplier_delivery_request
+        auto.offset.reset: latest
+        commit-strategy: throttled
+        failure-strategy: fail
+
+scheduler:
+  delivery:
+    process-request:
+      cron: "/15 * * * * ?"
+    proceed-accepted-status:
+      cron: "/25 * * * * ?"
+    proceed-moving-status:
+      cron: "/15 * * * * ?"

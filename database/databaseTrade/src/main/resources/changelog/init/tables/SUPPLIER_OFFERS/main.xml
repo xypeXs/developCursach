@@ -1,0 +1,55 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-table-SUPPLIER_OFFERS" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="SUPPLIER_OFFERS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="SUPPLIER_OFFERS">
+            <column name="SUPPLIER_OFFER_ID" type="NUMERIC(19)" remarks="Идентификатор предложения (первичный ключ)">
+                <constraints primaryKey="true" primaryKeyName="PK_SUPPLIER_OFFER_ID"/>
+            </column>
+            <column name="SUPPLIER_ID" type="NUMERIC(19)" remarks="Идентификатор записи о поставщике (внешний ключ)">
+                <constraints foreignKeyName="FK_SUPPLIER_OFFERS_SUPPLIER_ID"
+                             referencedTableName="SUPPLIERS"
+                             referencedColumnNames="SUPPLIER_ID"/>
+            </column>
+            <column name="GOOD_ID" type="NUMERIC(19)" remarks="Идентификатор записи о товаре (внешний ключ)">
+                <constraints foreignKeyName="FK_SUPPLIER_OFFERS_GOOD_ID"
+                             referencedTableName="GOODS"
+                             referencedColumnNames="GOOD_ID"/>
+            </column>
+            <column name="PRICE" type="NUMERIC(19, 2)" remarks="Цена на товар"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-column-IS_ACTIVE-to-SUPPLIER_OFFERS" author="gananyev">
+        <preConditions>
+            <and>
+                <tableExists tableName="SUPPLIER_OFFERS"/>
+                <not>
+                    <columnExists tableName="SUPPLIER_OFFERS" columnName="IS_ACTIVE"/>
+                </not>
+            </and>
+        </preConditions>
+        <addColumn tableName="SUPPLIER_OFFERS">
+            <column name="IS_ACTIVE" type="BOOLEAN" defaultValue="true" remarks="Активная запись (да/нет)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add-sequence-generator-SUPPLIER_OFFER_ID" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="SUPPLIER_OFFERS"/>
+        </preConditions>
+        <createSequence sequenceName="SUPPLIER_OFFER_ID_SEQ"
+                        startValue="1000"
+                        incrementBy="1"
+                        maxValue="9223372036854775807"/>
+    </changeSet>
+
+</databaseChangeLog>

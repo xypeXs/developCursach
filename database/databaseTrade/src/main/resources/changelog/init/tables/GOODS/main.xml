@@ -1,0 +1,49 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-table-GOODS" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="GOODS"/>
+            </not>
+        </preConditions>
+        <createTable tableName="GOODS">
+            <column name="GOOD_ID" type="NUMERIC(19)" remarks="Идентификатор записи о товаре (первичный ключ)">
+                <constraints primaryKey="true" primaryKeyName="PK_GOOD_ID"/>
+            </column>
+            <column name="NAME" type="TEXT(100)" remarks="Наименование типа товара"/>
+            <column name="HEIGHT" type="NUMBER(19, 2)" remarks="Объём одной единицы товара"/>
+            <column name="WIDTH" type="NUMBER(19, 2)" remarks="Объём одной единицы товара"/>
+            <column name="LENGTH" type="NUMBER(19, 2)" remarks="Объём одной единицы товара"/>
+            <column name="WEIGHT" type="NUMBER(19, 3)" remarks="Масса одной единицы товара"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-sequence-generator-GOODS" author="gananyev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="GOODS"/>
+        </preConditions>
+        <createSequence sequenceName="GOOD_ID_SEQ"
+                        startValue="1000"
+                        incrementBy="1"
+                        maxValue="9223372036854775807"/>
+    </changeSet>
+
+    <changeSet id="add-column-IS_ACTIVE-to-GOODS" author="gananyev">
+        <preConditions>
+            <and>
+                <tableExists tableName="GOODS"/>
+                <not>
+                    <columnExists tableName="GOODS" columnName="IS_ACTIVE"/>
+                </not>
+            </and>
+        </preConditions>
+        <addColumn tableName="GOODS">
+            <column name="IS_ACTIVE" type="BOOLEAN" defaultValue="true" remarks="Активная запись (да/нет)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
