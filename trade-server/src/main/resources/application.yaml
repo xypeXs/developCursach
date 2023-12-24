@@ -8,7 +8,8 @@ quarkus:
     username: admin
     password: admin
   hibernate-orm:
-    database.generation: none
+    database:
+      generation: none
 
 kafka:
   bootstrap:
