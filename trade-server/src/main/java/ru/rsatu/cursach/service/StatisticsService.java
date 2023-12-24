@@ -1,18 +1,18 @@
 package ru.rsatu.cursach.service;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
+import io.quarkus.runtime.StartupEvent;
+import jakarta.enterprise.event.Observes;
+import jakarta.inject.Singleton;
 import ru.rsatu.cursach.data.template.Statistics;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-@ApplicationScoped
+@Singleton
 public class StatisticsService {
     private LocalDateTime startTime;
 
-    @PostConstruct
-    public void init() {
+    void onStart(@Observes StartupEvent ev) {
         startTime = LocalDateTime.now();
     }
 

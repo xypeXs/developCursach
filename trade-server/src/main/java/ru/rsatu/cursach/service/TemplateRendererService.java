@@ -2,11 +2,11 @@ package ru.rsatu.cursach.service;
 
 import io.quarkus.qute.Location;
 import io.quarkus.qute.Template;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import ru.rsatu.cursach.data.template.Statistics;
 
-@ApplicationScoped
+@Singleton
 public class TemplateRendererService {
 
     @Inject

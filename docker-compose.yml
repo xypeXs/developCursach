@@ -64,9 +64,8 @@ services:
       - "9082:8080"
     networks:
       - trade_network
-  trader_server:
+  trade_server:
     container_name: trade_server
-    image: trade-server
     build:
       context: trade-server
       dockerfile: src/main/docker/Dockerfile.jvm
@@ -75,6 +74,16 @@ services:
     ports:
       - "8080:8080"
     hostname: trade-server
+    networks:
+      - trade_network
+  supplier_server:
+    container_name: supplier-server
+    build:
+      context: supplier-server
+      dockerfile: src/main/docker/Dockerfile.jvm
+    depends_on:
+      - db
+    hostname: supplier-server
     networks:
       - trade_network
   keycloak:
