@@ -1,5 +1,6 @@
 package ru.rsatu.cursach.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.ConvertGroup;
@@ -16,6 +17,7 @@ import ru.rsatu.cursach.data.dto.delivery.DeliveryCreateRequestDto;
 import ru.rsatu.cursach.data.dto.delivery.DeliveryResponseDto;
 import ru.rsatu.cursach.data.validation.group.ValidationGroup;
 import ru.rsatu.cursach.service.controller.DeliveryControllerService;
+import ru.rsatu.cursach.utils.SecurityUtils;
 
 @Path("/delivery")
 public class DeliveryController {
@@ -27,6 +29,7 @@ public class DeliveryController {
     @Path("/request/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.CREATE_DELIVERY })
     public Response requestDelivery(@RequestBody @Valid @ConvertGroup(to = ValidationGroup.Post.class) DeliveryCreateRequestDto createRequestDto) {
         DeliveryResponseDto responseDto = deliveryControllerService.createDeliveryRequest(createRequestDto);
         return Response.ok(responseDto).build();
@@ -35,6 +38,7 @@ public class DeliveryController {
     @GET
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.READ_DELIVERY })
     public Response getDelivery(@QueryParam("uuid") String uuid) {
         DeliveryResponseDto responseDto = deliveryControllerService.getDelivery(uuid);
         return Response.ok(responseDto).build();

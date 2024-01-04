@@ -10,6 +10,11 @@ quarkus:
   hibernate-orm:
     database:
       generation: none
+  oidc:
+    auth-server-url: http://keycloak:8180/realms/TRADE
+    client-id: trade-service
+    credentials.secret: C9V4TqSCcdoT4NrouOBBwURduYOqJtDh
+    tls.verification: none
 
 kafka:
   bootstrap:

@@ -1,5 +1,6 @@
 package ru.rsatu.cursach.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -18,6 +19,7 @@ import ru.rsatu.cursach.data.dto.storage.StorageGoodResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageResponseDto;
 import ru.rsatu.cursach.data.dto.storage.StorageUpdateRequestDto;
 import ru.rsatu.cursach.service.controller.StorageControllerService;
+import ru.rsatu.cursach.utils.SecurityUtils;
 
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class StorageController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.CREATE_STORAGE })
     public Response createStorage(@RequestBody @Valid StorageCreateRequestDto createRequestDto) {
         StorageResponseDto responseDto = storageControllerService.createStorage(createRequestDto);
         return Response.ok(responseDto).build();
@@ -39,6 +42,7 @@ public class StorageController {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.READ_STORAGE })
     public Response getStorageInfo(@PathParam("id") Long id) {
         StorageResponseDto responseDto = storageControllerService.getStorageInfo(id);
         return Response.ok(responseDto).build();
@@ -46,6 +50,8 @@ public class StorageController {
 
     @GET
     @Path("/{id}/goods/list")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.READ_GOOD })
     public Response getStorageGoodList(@PathParam("id") Long id) {
         List<StorageGoodResponseDto> responseDtoList = storageControllerService.getStorageGoodList(id);
         return Response.ok(responseDtoList).build();
@@ -55,6 +61,7 @@ public class StorageController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.UPDATE_STORAGE })
     public Response updateStorageInfo(@PathParam("id") Long id, @RequestBody @Valid StorageUpdateRequestDto updateRequestDto) {
         StorageResponseDto responseDto = storageControllerService.updateStorage(id, updateRequestDto);
         return Response.ok(responseDto).build();
@@ -63,6 +70,7 @@ public class StorageController {
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.DELETE_STORAGE })
     public Response deleteStorage(@PathParam("id") Long id) {
         storageControllerService.deleteStorage(id);
         return Response.ok().build();

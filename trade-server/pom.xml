@@ -70,6 +70,16 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- SECURITY -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-keycloak-authorization</artifactId>
+        </dependency>
+
        <!-- DataSource -->
         <dependency>
             <groupId>io.quarkus</groupId>

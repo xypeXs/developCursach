@@ -1,5 +1,6 @@
 package ru.rsatu.cursach.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -17,6 +18,7 @@ import ru.rsatu.cursach.data.dto.supplier.SupplierCreateRequestDto;
 import ru.rsatu.cursach.data.dto.supplier.SupplierResponseDto;
 import ru.rsatu.cursach.data.dto.supplier.SupplierUpdateRequestDto;
 import ru.rsatu.cursach.service.controller.SupplierControllerService;
+import ru.rsatu.cursach.utils.SecurityUtils;
 
 @Path("/supplier")
 public class SupplierController {
@@ -28,6 +30,7 @@ public class SupplierController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.CREATE_SUPPLIER })
     public Response createSupplier(@RequestBody @Valid SupplierCreateRequestDto createRequestDto) {
         SupplierResponseDto responseDto = supplierControllerService.createSupplier(createRequestDto);
         return Response.ok(responseDto).build();
@@ -36,6 +39,7 @@ public class SupplierController {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.READ_SUPPLIER })
     public Response getSupplier(@PathParam("id") Long id) {
         SupplierResponseDto responseDto = supplierControllerService.getSupplier(id);
         return Response.ok(responseDto).build();
@@ -45,6 +49,7 @@ public class SupplierController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.UPDATE_SUPPLIER })
     public Response updateSupplier(@PathParam("id") Long id, @RequestBody @Valid SupplierUpdateRequestDto updateRequestDto) {
         SupplierResponseDto responseDto = supplierControllerService.updateSupplier(id, updateRequestDto);
         return Response.ok(responseDto).build();
@@ -53,6 +58,7 @@ public class SupplierController {
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(value = { SecurityUtils.Role.DELETE_SUPPLIER })
     public Response deleteSupplier(@PathParam("id") Long id) {
         supplierControllerService.deleteSupplier(id);
         return Response.ok().build();
