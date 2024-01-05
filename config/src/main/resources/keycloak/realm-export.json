@@ -248,6 +248,16 @@
       }
     ],
     "client": {
+      "supplier-service": [
+        {
+          "id": "62db2f75-45f0-493a-9544-69ce4d75d9de",
+          "name": "uma_protection",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "8be401a3-dba6-48e7-b8e3-01676139e0e8",
+          "attributes": {}
+        }
+      ],
       "realm-management": [
         {
           "id": "342703b9-70b2-4f9f-a1e0-eae28149999e",
@@ -670,6 +680,29 @@
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
   "webAuthnPolicyPasswordlessExtraOrigins": [],
+  "users": [
+    {
+      "id": "a92fde80-a20d-4e99-8f4b-f2bff0cf2671",
+      "createdTimestamp": 1704446800357,
+      "username": "service-account-supplier-service",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "supplier-service",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-trade"
+      ],
+      "clientRoles": {
+        "supplier-service": [
+          "uma_protection"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    }
+  ],
   "scopeMappings": [
     {
       "clientScope": "offline_access",
@@ -967,6 +1000,164 @@
         "offline_access",
         "microprofile-jwt"
       ]
+    },
+    {
+      "id": "8be401a3-dba6-48e7-b8e3-01676139e0e8",
+      "clientId": "supplier-service",
+      "name": "Supplier service",
+      "description": "Service for suppliers",
+      "rootUrl": "http://localhost:9090/supplier-service",
+      "adminUrl": "http://localhost:9090/supplier-service",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "http://localhost:9090/supplier-service/*"
+      ],
+      "webOrigins": [
+        "http://localhost:9090"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "client.secret.creation.time": "1704446800",
+        "backchannel.logout.session.required": "true",
+        "display.on.consent.screen": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "a0232711-90ef-4f14-a4b8-c980ed4fad15",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "client_id",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "client_id",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "c1108f97-db7a-447e-a074-7aa5804f591b",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "aa3ec9c2-13ec-4e67-8c7b-3c1fda98bdb1",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ],
+      "authorizationSettings": {
+        "allowRemoteResourceManagement": false,
+        "policyEnforcementMode": "ENFORCING",
+        "resources": [
+          {
+            "name": "Get Delivery",
+            "ownerManagedAccess": false,
+            "displayName": "Get Delivery",
+            "attributes": {},
+            "_id": "fc3c7979-726b-4b3c-be4b-3a61398b8376",
+            "uris": [
+              "/supplier-service/delivery/*"
+            ],
+            "icon_uri": ""
+          }
+        ],
+        "policies": [
+          {
+            "id": "a70591d6-788a-4949-8de5-b58147095c4f",
+            "name": "ROLE READ_DELIVERY",
+            "description": "Has a role to READ_DELIVERY",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"READ_DELIVERY\",\"required\":true}]"
+            }
+          },
+          {
+            "id": "d22f14f9-327b-4a94-ab16-705cf72eb1f8",
+            "name": "Supplier Group Policy",
+            "description": "Check if user belongs to Supplier Group",
+            "type": "group",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "groups": "[{\"path\":\"/Supplier\",\"extendChildren\":false}]",
+              "groupsClaim": ""
+            }
+          },
+          {
+            "id": "a8306dd9-f62d-4857-bff6-88e294fc20f3",
+            "name": "Grant Read Delivery",
+            "description": "Grant Read Delivery",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Get Delivery\"]",
+              "applyPolicies": "[\"ROLE READ_DELIVERY\",\"Supplier Group Policy\"]"
+            }
+          }
+        ],
+        "scopes": [],
+        "decisionStrategy": "UNANIMOUS"
+      }
     },
     {
       "id": "7bf2a384-cae9-4230-83d1-219fe9d8e24f",

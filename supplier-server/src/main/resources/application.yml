@@ -1,4 +1,6 @@
 quarkus:
+  log:
+    level: INFO
   http:
     root-path: /supplier-service
     port: 9090
@@ -11,6 +13,16 @@ quarkus:
   hibernate-orm:
     database:
       generation: none
+  oidc:
+    auth-server-url: http://keycloak:8180/realms/TRADE
+    client-id: supplier-service
+    credentials:
+      secret: J0JoXcjs2hu1iMZkiw3Y1WMz3ufTHNs6
+    tls:
+      verification: none
+  keycloak:
+    policy-enforcer:
+      enable: true
 
 kafka:
   bootstrap:
