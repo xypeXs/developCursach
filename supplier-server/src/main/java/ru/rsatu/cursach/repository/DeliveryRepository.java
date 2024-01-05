@@ -14,4 +14,9 @@ public class DeliveryRepository implements PanacheRepositoryBase<Delivery, Long>
         String query = "from Delivery where status.code = ?1";
         return find(query, statusEnum.getCode()).list();
     }
+
+    public Delivery findByUUID(String uuid) {
+        String query = "from Delivery where uuid = ?1";
+        return find(query, uuid).firstResult();
+    }
 }

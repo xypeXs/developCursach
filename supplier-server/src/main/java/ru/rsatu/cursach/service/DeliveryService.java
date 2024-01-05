@@ -42,6 +42,11 @@ public class DeliveryService {
         return deliveryRepository.findAllByStatus(statusEnum);
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
+    public Delivery getDeliveryByUUID(String uuid) {
+        return deliveryRepository.findByUUID(uuid);
+    }
+
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     public List<Delivery> processDeliveryRequests() {
         List<Delivery> pendingDeliveryList = getDeliveriesByStatus(DeliveryStatusEnum.PENDING_SUPPLIER);

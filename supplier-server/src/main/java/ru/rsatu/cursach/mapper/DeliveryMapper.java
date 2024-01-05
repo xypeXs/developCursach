@@ -5,6 +5,7 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.rsatu.cursach.config.MapstructConfig;
+import ru.rsatu.cursach.data.dto.DeliveryResponseDto;
 import ru.rsatu.cursach.data.reference.DeliveryStatusEnum;
 import ru.rsatu.cursach.entity.Delivery;
 import ru.rsatu.cursach.model.kafka.DeliveryRequestRecord;
@@ -13,7 +14,8 @@ import ru.rsatu.cursach.service.ReferenceService;
 
 @Mapper(
         config = MapstructConfig.class,
-        imports = {DeliveryStatusEnum.class}
+        imports = {DeliveryStatusEnum.class},
+        uses = {ReferenceMapper.class}
 )
 public abstract class DeliveryMapper {
 
@@ -28,6 +30,13 @@ public abstract class DeliveryMapper {
     @Mapping(target = "status", expression = "java(referenceService.getDeliveryStatus(DeliveryStatusEnum.PENDING_SUPPLIER))")
     @Mapping(target = "quantity", source = "quantity")
     public abstract Delivery mapToEntity(DeliveryRequestRecord requestRecord);
+
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "uuid", source = "uuid")
+    @Mapping(target = "deliveryDate", source = "deliveryDate")
+    @Mapping(target = "deliveryStatus", source = "status", qualifiedByName = "referenceBase")
+    @Mapping(target = "quantity", source = "quantity")
+    public abstract DeliveryResponseDto mapToResponse(Delivery delivery);
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "deliveryUUID", source = "uuid")
