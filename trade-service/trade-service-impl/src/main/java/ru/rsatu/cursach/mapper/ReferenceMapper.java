@@ -9,7 +9,6 @@ import ru.rsatu.cursach.config.MapstructConfig;
 import ru.rsatu.cursach.data.dto.reference.BaseReferenceDto;
 import ru.rsatu.cursach.data.dto.reference.BaseReferencePageDto;
 import ru.rsatu.cursach.entity.base.BaseReferenceEntity;
-import ru.rsatu.cursach.entity.reference.DeliveryStatus;
 
 import java.util.List;
 import java.util.stream.Collectors;
