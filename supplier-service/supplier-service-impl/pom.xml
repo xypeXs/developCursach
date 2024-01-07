@@ -21,6 +21,7 @@
         <org.mapstruct.version>1.5.4.Final</org.mapstruct.version>
         <model.version>1.0-SNAPSHOT</model.version>
         <supplier-service.api.version>1.0-SNAPSHOT</supplier-service.api.version>
+        <trade-service.api.version>1.0-SNAPSHOT</trade-service.api.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -107,6 +108,15 @@
             <groupId>ru.rsatu.cursach</groupId>
             <artifactId>supplier-service-api</artifactId>
             <version>${supplier-service.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.rsatu.cursach</groupId>
+            <artifactId>trade-service-api</artifactId>
+            <version>${trade-service.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client-jackson</artifactId>
         </dependency>
 
         <dependency>

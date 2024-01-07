@@ -23,6 +23,10 @@ quarkus:
   keycloak:
     policy-enforcer:
       enable: true
+  rest-client:
+    trade-service-api:
+      url: http://localhost:8080/trade-service/
+      connect-timeout: 300000
 
 kafka:
   bootstrap:
