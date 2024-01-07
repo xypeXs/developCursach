@@ -6,11 +6,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import ru.rsatu.cursach.config.MapstructConfig;
-import ru.rsatu.cursach.data.dto.BaseReferenceDto;
+import ru.rsatu.cursach.dto.reference.BaseReferenceDto;
 import ru.rsatu.cursach.entity.base.BaseReferenceEntity;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Mapper(
         config = MapstructConfig.class

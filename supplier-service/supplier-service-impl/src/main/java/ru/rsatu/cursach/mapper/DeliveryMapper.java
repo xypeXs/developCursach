@@ -5,7 +5,7 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.rsatu.cursach.config.MapstructConfig;
-import ru.rsatu.cursach.data.dto.DeliveryResponseDto;
+import ru.rsatu.cursach.dto.delivery.DeliveryResponseDto;
 import ru.rsatu.cursach.data.reference.DeliveryStatusEnum;
 import ru.rsatu.cursach.entity.Delivery;
 import ru.rsatu.cursach.model.kafka.DeliveryRequestRecord;

@@ -10,12 +10,13 @@
     <packaging>pom</packaging>
     <modules>
         <module>trade-service</module>
-        <module>supplier-server</module>
+        <module>supplier-service</module>
         <module>database</module>
         <module>model</module>
         <module>database</module>
         <module>config</module>
         <module>trade-service</module>
+        <module>supplier-service</module>
     </modules>
 
     <properties>

@@ -1,4 +1,4 @@
-package ru.rsatu.cursach.data.dto;
+package ru.rsatu.cursach.dto.reference;
 
 import lombok.Data;
 

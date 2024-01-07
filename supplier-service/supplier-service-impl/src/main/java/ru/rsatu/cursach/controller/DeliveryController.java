@@ -7,8 +7,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import ru.rsatu.cursach.data.dto.DeliveryResponseDto;
 import ru.rsatu.cursach.service.controller.DeliveryControllerService;
+import ru.rsatu.cursach.dto.delivery.DeliveryResponseDto;
 
 @Path("/delivery")
 public class DeliveryController {
