@@ -31,6 +31,11 @@ quarkus:
       url: http://keycloak:8180/
       connect-timeout: 300000
 
+rest-client:
+  keycloak:
+    username: supplier-service
+    password: Amx*aJG#8nYZ*#!jHIBO
+
 kafka:
   bootstrap:
     servers: kafka:9002

@@ -134,6 +134,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-keycloak-authorization</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus.resteasy.reactive</groupId>
+            <artifactId>resteasy-reactive-common</artifactId>
+            <version>3.5.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
