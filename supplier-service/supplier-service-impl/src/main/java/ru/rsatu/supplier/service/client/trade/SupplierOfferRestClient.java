@@ -6,11 +6,11 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import ru.rsatu.supplier.data.client.RestClientConfig;
+import ru.rsatu.supplier.data.client.RestClientProperty;
 import ru.rsatu.trade.data.dto.offer.SupplierOfferResponseDto;
 
 @Path("/offer")
-@RegisterRestClient(configKey = RestClientConfig.Key.TRADE_SERVICE_API_KEY)
+@RegisterRestClient(configKey = RestClientProperty.Key.TRADE_SERVICE_API_KEY)
 public interface SupplierOfferRestClient {
 
     @GET

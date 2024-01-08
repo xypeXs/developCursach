@@ -8,6 +8,6 @@ import ru.rsatu.supplier.dto.good.GoodResponseDto;
 @Mapper(config = MapstructConfig.class)
 public abstract class GoodMapper {
 
-    @Named("mapToGoodResponseDto")
+    @Named("mapToGoodDto")
     public abstract GoodResponseDto mapToGoodResponseDto(ru.rsatu.trade.data.dto.good.GoodResponseDto goodResponseDto);
 }

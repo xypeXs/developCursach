@@ -20,6 +20,19 @@ quarkus:
       secret: J0JoXcjs2hu1iMZkiw3Y1WMz3ufTHNs6
     tls:
       verification: none
+  oidc-client:
+    auth-server-url: http://keycloak:8180/realms/TRADE
+    discovery-enabled: false
+    token-path: /protocol/openid-connect/token
+    client-id: supplier-service
+    credentials:
+      secret: J0JoXcjs2hu1iMZkiw3Y1WMz3ufTHNs6
+    grant:
+      type: password
+    grant-options:
+      password:
+        username: supplier-service
+        password: Amx*aJG#8nYZ*#!jHIBO
   keycloak:
     policy-enforcer:
       enable: true
@@ -27,14 +40,6 @@ quarkus:
     trade-service-api:
       url: http://localhost:8080/trade-service/
       connect-timeout: 300000
-    keycloak-api:
-      url: http://keycloak:8180/
-      connect-timeout: 300000
-
-rest-client:
-  keycloak:
-    username: supplier-service
-    password: Amx*aJG#8nYZ*#!jHIBO
 
 kafka:
   bootstrap:

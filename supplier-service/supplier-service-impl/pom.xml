@@ -125,6 +125,11 @@
             <version>4.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc-client</artifactId>
+        </dependency>
+
         <!-- SECURITY -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -133,11 +138,6 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-keycloak-authorization</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus.resteasy.reactive</groupId>
-            <artifactId>resteasy-reactive-common</artifactId>
-            <version>3.5.3</version>
         </dependency>
     </dependencies>
     <build>

@@ -616,6 +616,31 @@
       ]
     },
     {
+      "id": "98aba5ba-f7f9-4f94-95be-75b1b829824b",
+      "name": "Service",
+      "path": "/Service",
+      "realmRoles": [
+        "DELETE_SUPPLIER",
+        "READ_SUPPLIER",
+        "CREATE_SUPPLIER",
+        "UPDATE_SUPPLIER",
+        "CREATE_STORAGE",
+        "CREATE_DELIVERY",
+        "READ_DELIVERY",
+        "READ_SUPPLIER_OFFER",
+        "DELETE_GOOD",
+        "UPDATE_STORAGE",
+        "READ_APP_STATISTICS",
+        "UPDATE_GOOD",
+        "CREATE_SUPPLIER_OFFER",
+        "DELETE_STORAGE",
+        "READ_GOOD",
+        "READ_STORAGE",
+        "CREATE_GOOD",
+        "DELETE_SUPPLIER_OFFER"
+      ]
+    },
+    {
       "id": "d4d3da98-a3fc-4deb-a2af-cc23547e7bf2",
       "name": "Supplier",
       "path": "/Supplier",

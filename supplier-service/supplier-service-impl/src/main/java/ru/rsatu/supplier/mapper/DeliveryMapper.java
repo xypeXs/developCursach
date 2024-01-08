@@ -8,7 +8,7 @@ import ru.rsatu.supplier.config.MapstructConfig;
 import ru.rsatu.trade.data.dto.offer.SupplierOfferResponseDto;
 import ru.rsatu.supplier.dto.delivery.DeliveryResponseDto;
 import ru.rsatu.supplier.data.reference.DeliveryStatusEnum;
-import ru.rsatu.supplier.dto.storage.StorageResponseDto;
+import ru.rsatu.trade.data.dto.storage.StorageResponseDto;
 import ru.rsatu.supplier.entity.Delivery;
 import ru.rsatu.model.kafka.DeliveryRequestRecord;
 import ru.rsatu.model.kafka.DeliveryResponseRecord;
@@ -17,7 +17,7 @@ import ru.rsatu.supplier.service.ReferenceService;
 @Mapper(
         config = MapstructConfig.class,
         imports = {DeliveryStatusEnum.class},
-        uses = {ReferenceMapper.class, GoodMapper.class}
+        uses = {ReferenceMapper.class, GoodMapper.class, StorageMapper.class}
 )
 public abstract class DeliveryMapper {
 
@@ -37,7 +37,8 @@ public abstract class DeliveryMapper {
     @Mapping(target = "uuid", source = "delivery.uuid")
     @Mapping(target = "deliveryDate", source = "delivery.deliveryDate")
     @Mapping(target = "deliveryStatus", source = "delivery.status", qualifiedByName = "referenceBase")
-    @Mapping(target = "goodInfo", source = "offerInfo.goodInfo", qualifiedByName = "mapToGoodResponseDto")
+    @Mapping(target = "goodInfo", source = "offerInfo.goodInfo", qualifiedByName = "mapToGoodDto")
+    @Mapping(target = "storageInfo", source = "storageInfo", qualifiedByName = "mapToStorageDto")
     @Mapping(target = "quantity", source = "delivery.quantity")
     public abstract DeliveryResponseDto mapToResponse(Delivery delivery,
                                                       SupplierOfferResponseDto offerInfo,

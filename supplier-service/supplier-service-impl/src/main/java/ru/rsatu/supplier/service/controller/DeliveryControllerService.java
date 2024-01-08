@@ -6,7 +6,7 @@ import jakarta.transaction.Transactional;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import ru.rsatu.trade.data.dto.offer.SupplierOfferResponseDto;
 import ru.rsatu.supplier.dto.delivery.DeliveryResponseDto;
-import ru.rsatu.supplier.dto.storage.StorageResponseDto;
+import ru.rsatu.trade.data.dto.storage.StorageResponseDto;
 import ru.rsatu.supplier.entity.Delivery;
 import ru.rsatu.supplier.mapper.DeliveryMapper;
 import ru.rsatu.supplier.service.DeliveryService;
