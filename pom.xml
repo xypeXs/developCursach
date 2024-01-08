@@ -9,11 +9,14 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>trade-server</module>
-        <module>supplier-server</module>
+        <module>trade-service</module>
+        <module>supplier-service</module>
         <module>database</module>
         <module>model</module>
         <module>database</module>
+        <module>config</module>
+        <module>trade-service</module>
+        <module>supplier-service</module>
     </modules>
 
     <properties>

@@ -98,10 +98,10 @@ services:
       - KEYCLOAK_DATABASE_PORT=5432
       - KEYCLOAK_DATABASE_USER=admin
       - KEYCLOAK_DATABASE_PASSWORD=admin
-      - KEYCLOAK_DATABASE=KEYCLOAK
+      - KEYCLOAK_DATABASE_NAME=KEYCLOAK
     ports:
-      - "8081:8080"
-      - "8443:8443"
+      - "8180:8080"
+      - "8143:8443"
     hostname: keycloak
     networks:
       - trade_network

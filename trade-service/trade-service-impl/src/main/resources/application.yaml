@@ -1,0 +1,32 @@
+quarkus:
+  http:
+    root-path: /trade-service
+  datasource:
+    jdbc:
+      url: jdbc:postgresql://postgres:5432/TRADE
+    db-kind: postgresql
+    username: admin
+    password: admin
+  hibernate-orm:
+    database:
+      generation: none
+  oidc:
+    auth-server-url: http://keycloak:8180/realms/TRADE
+    client-id: trade-service
+    credentials:
+      secret: C9V4TqSCcdoT4NrouOBBwURduYOqJtDh
+    tls:
+      verification: none
+
+kafka:
+  bootstrap:
+    servers: kafka:9002
+
+mp:
+  messaging:
+    incoming:
+      delivery_response:
+        group.id: trade_delivery_response
+        auto.offset.reset: latest
+        commit-strategy: throttled
+        failure-strategy: fail
